@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,19 +38,19 @@ public class MainActivity extends AppCompatActivity {
         mealsButon.setOnClickListener(view -> Toast.makeText(this, "mealsButtonClicked", Toast.LENGTH_SHORT).show());
         friendsButon.setOnClickListener(view -> Toast.makeText(this, "friendsButtonClicked", Toast.LENGTH_SHORT).show());
         settingsButon.setOnClickListener(view -> Toast.makeText(this, "settingsButtonClicked", Toast.LENGTH_SHORT).show());
+
+        this.purgeAndReplaceFixtures();
     }
 
     private void onBottomBarButtonClick(){
         Toast.makeText(this, "onBottomBarButtonClick", Toast.LENGTH_SHORT).show();
-
-        this.purgeAndReplaceFixtures(5);
     }
 
-    protected void purgeAndReplaceFixtures(int count) {
+    protected void purgeAndReplaceFixtures() {
         SugarRecord.deleteAll(Session.class);
         SugarRecord.deleteAll(Meal.class);
 
-        for (int i = 1; i <= count; i++) {
+        for (int i = 1; i <= 5; i++) {
             (new Session(
                 "Session number " + i,
                 "location " + i,
