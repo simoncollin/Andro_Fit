@@ -73,17 +73,17 @@ public class MainActivity extends AppCompatActivity {
         List<Session> sessions = SugarRecord.listAll(Session.class);
         List<Meal> meals = SugarRecord.listAll(Meal.class);
 
-        Log.v("RESULTS", "Sessions count: " + sessions.size());
-        Log.v("RESULTS", "Meals count: " + meals.size());
+        Log.v("purgeAndReplaceFixtures", "Sessions count: " + sessions.size());
+        Log.v("purgeAndReplaceFixtures", "Meals count: " + meals.size());
 
         Session firstSession = sessions.get(0);
         Meal firstMeal = meals.get(0);
-        Log.v("RESULTS", "First session: " + firstSession);
-        Log.v("RESULTS", "First meal: " + firstMeal);
+        Log.v("purgeAndReplaceFixtures", "First session: " + firstSession);
+        Log.v("purgeAndReplaceFixtures", "First meal: " + firstMeal);
 
         Session lastSession = sessions.get(sessions.size()-1);
         Meal lastMeal = meals.get(meals.size()-1);
-        Log.v("RESULTS", "Last session: " + lastSession);
-        Log.v("RESULTS", "Last meal: " + lastMeal);
+        Log.v("purgeAndReplaceFixtures", "Last session: " + lastSession);
+        Log.v("purgeAndReplaceFixtures", "Last meal: " + lastMeal);
     }
 }
