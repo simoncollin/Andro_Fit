@@ -1,12 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
    <include
        android:id="@+id/app_bar"
-       layout="@layout/app_bar">
-   </include>
+       layout="@layout/app_bar"
+       app:layout_constraintTop_toTopOf="parent"/>
+
+   <androidx.coordinatorlayout.widget.CoordinatorLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_gravity="bottom"
+       app:layout_constraintBottom_toBottomOf="parent"
+       tools:layout_editor_absoluteX="-82dp">
+
+      <!-- Other components and views -->
+
+      <com.google.android.material.bottomappbar.BottomAppBar
+          android:id="@+id/bottom_bar"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="bottom"
+          app:backgroundTint="@color/mainGreen"
+          app:fabCradleMargin="0dp"
+          app:fabCradleRoundedCornerRadius="0dp" />
+
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="57dp"
+          android:orientation="horizontal"
+          app:layout_anchor="@+id/bottom_bar"
+          app:layout_anchorGravity="center">
+
+         <ImageButton
+             android:id="@+id/bottom_bar_sessions_button"
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:adjustViewBounds="true"
+             android:backgroundTint="@color/mainGreen"
+             android:contentDescription="@string/cd_sessions"
+             android:cropToPadding="false"
+             android:fadingEdgeLength="1dp"
+             android:padding="5dp"
+             android:scaleType="fitCenter"
+             app:srcCompat="@mipmap/ic_gym" />
+
+         <ImageButton
+             android:id="@+id/bottom_bar_meals_button"
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:adjustViewBounds="true"
+             android:padding="7dp"
+             android:scaleType="fitCenter"
+             android:layout_weight="1"
+             android:backgroundTint="@color/mainGreen"
+             app:srcCompat="@mipmap/ic_meal"
+             android:layout_marginEnd="20dp"
+             android:contentDescription="@string/cd_meals"/>
+
+         <ImageButton
+             android:id="@+id/bottom_bar_friends_button"
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:adjustViewBounds="true"
+             android:padding="5dp"
+             android:scaleType="fitCenter"
+             android:layout_weight="1"
+             android:backgroundTint="@color/mainGreen"
+             app:srcCompat="@mipmap/ic_friends"
+             android:layout_marginStart="20dp"
+             android:contentDescription="@string/cd_friends"/>
+
+         <ImageButton
+             android:id="@+id/bottom_bar_settings_button"
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:adjustViewBounds="false"
+             android:padding="9dp"
+             android:scaleType="fitCenter"
+             android:layout_weight="1"
+             android:backgroundTint="@color/mainGreen"
+             app:srcCompat="@mipmap/ic_settings"
+             android:contentDescription="@string/cd_settings"/>
+      </LinearLayout>
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/bottom_bar_button"
+          style="@style/Platform.MaterialComponents"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@mipmap/ic_add"
+          app:backgroundTint="@color/mainGreen"
+          app:layout_anchor="@id/bottom_bar"
+          app:maxImageSize="50dp"
+          app:useCompatPadding="true"/>
+
+   </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
