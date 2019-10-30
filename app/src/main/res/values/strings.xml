@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">Andro\'Fit</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+<string name="app_name">Andro\'Fit</string>
+<string name="title_home">Home</string>
+<string name="title_dashboard">Dashboard</string>
+<string name="title_notifications">Notifications</string>
+
+
+    <!-- Content Description String -->
+    <string name="cd_sessions">My sport sessions button</string>
+    <string name="cd_meals">My meals button</string>
+    <string name="cd_friends">My friends button</string>
+    <string name="cd_settings">Settings button</string>
 </resources>
