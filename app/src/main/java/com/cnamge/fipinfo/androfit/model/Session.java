@@ -58,4 +58,16 @@ public class Session extends SugarRecord<Session> {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Session{" +
+                "name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", description='" + description + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
