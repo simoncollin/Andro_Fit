@@ -3,6 +3,7 @@
     package="com.cnamge.fipinfo.androfit">
 
     <application
+        android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         tools:replace="android:icon"
