@@ -39,14 +39,18 @@ public class MainActivity extends AppCompatActivity {
         friendsButon.setOnClickListener(view -> Toast.makeText(this, "friendsButtonClicked", Toast.LENGTH_SHORT).show());
         settingsButon.setOnClickListener(view -> Toast.makeText(this, "settingsButtonClicked", Toast.LENGTH_SHORT).show());
 
-        this.purgeAndReplaceFixtures();
+        try {
+            this.purgeAndReplaceFixtures();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void onBottomBarButtonClick(){
         Toast.makeText(this, "onBottomBarButtonClick", Toast.LENGTH_SHORT).show();
     }
 
-    protected void purgeAndReplaceFixtures() {
+    protected void purgeAndReplaceFixtures() throws Exception {
         SugarRecord.deleteAll(Session.class);
         SugarRecord.deleteAll(Meal.class);
 

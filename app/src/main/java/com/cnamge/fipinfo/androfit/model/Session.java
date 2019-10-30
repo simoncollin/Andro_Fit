@@ -3,15 +3,19 @@ package com.cnamge.fipinfo.androfit.model;
 import com.orm.SugarRecord;
 
 public class Session extends SugarRecord<Session> {
-    String name;
-    String location;
-    long beginDate;
-    long endDate;
-    String description;
+    private String name;
+    private String location;
+    private long beginDate;
+    private long endDate;
+    private String description;
 
     public Session() {}
 
-    public Session(String name, String location, long beginDate, long endDate, String description) {
+    public Session(String name, String location, long beginDate, long endDate, String description) throws Exception {
+        if (beginDate > endDate) {
+            throw new Exception("endDate should be greater than beginDate");
+        }
+
         this.name        = name;
         this.location    = location;
         this.beginDate   = beginDate;
