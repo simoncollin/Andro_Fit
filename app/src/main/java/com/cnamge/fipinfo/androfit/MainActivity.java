@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,6 +51,13 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         this.settingsButton.setOnClickListener(view -> mainPresenter.onBottomBarSettingsButtonClick(view));
 
         this.selectView(this.sessionsButton);
+         
+      //FOR TEST ONLY
+         try {
+            this.purgeAndReplaceFixtures();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Activity life cycle
@@ -93,5 +101,43 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
                 this.appBarRightText.setText(R.string.title_settings);
             }
         }
+    }
+    
+    // TODO: Remove after devs
+    protected void purgeAndReplaceFixtures() throws Exception {
+        SugarRecord.deleteAll(Session.class);
+        SugarRecord.deleteAll(Meal.class);
+
+        for (int i = 1; i <= 5; i++) {
+            (new Session(
+                "Session number " + i,
+                "location " + i,
+                System.currentTimeMillis(),
+                System.currentTimeMillis(),
+                "description " + i
+            )).save();
+            (new Meal(
+                "Meal number " + i,
+                System.currentTimeMillis(),
+                "description " + i,
+                "image " + i
+            )).save();
+        }
+
+        List<Session> sessions = SugarRecord.listAll(Session.class);
+        List<Meal> meals = SugarRecord.listAll(Meal.class);
+
+        Log.v("purgeAndReplaceFixtures", "Sessions count: " + sessions.size());
+        Log.v("purgeAndReplaceFixtures", "Meals count: " + meals.size());
+
+        Session firstSession = sessions.get(0);
+        Meal firstMeal = meals.get(0);
+        Log.v("purgeAndReplaceFixtures", "First session: " + firstSession);
+        Log.v("purgeAndReplaceFixtures", "First meal: " + firstMeal);
+
+        Session lastSession = sessions.get(sessions.size()-1);
+        Meal lastMeal = meals.get(meals.size()-1);
+        Log.v("purgeAndReplaceFixtures", "Last session: " + lastSession);
+        Log.v("purgeAndReplaceFixtures", "Last meal: " + lastMeal);
     }
 }
