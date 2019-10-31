@@ -3,11 +3,18 @@ package com.cnamge.fipinfo.androfit;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.util.Log;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import com.cnamge.fipinfo.androfit.model.Meal;
+import com.cnamge.fipinfo.androfit.model.Session;
+import com.orm.SugarRecord;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,9 +38,52 @@ public class MainActivity extends AppCompatActivity {
         mealsButon.setOnClickListener(view -> Toast.makeText(this, "mealsButtonClicked", Toast.LENGTH_SHORT).show());
         friendsButon.setOnClickListener(view -> Toast.makeText(this, "friendsButtonClicked", Toast.LENGTH_SHORT).show());
         settingsButon.setOnClickListener(view -> Toast.makeText(this, "settingsButtonClicked", Toast.LENGTH_SHORT).show());
+
+        try {
+            this.purgeAndReplaceFixtures();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void onBottomBarButtonClick(){
         Toast.makeText(this, "onBottomBarButtonClick", Toast.LENGTH_SHORT).show();
+    }
+
+    protected void purgeAndReplaceFixtures() throws Exception {
+        SugarRecord.deleteAll(Session.class);
+        SugarRecord.deleteAll(Meal.class);
+
+        for (int i = 1; i <= 5; i++) {
+            (new Session(
+                "Session number " + i,
+                "location " + i,
+                System.currentTimeMillis(),
+                System.currentTimeMillis(),
+                "description " + i
+            )).save();
+            (new Meal(
+                "Meal number " + i,
+                System.currentTimeMillis(),
+                "description " + i,
+                "image " + i
+            )).save();
+        }
+
+        List<Session> sessions = SugarRecord.listAll(Session.class);
+        List<Meal> meals = SugarRecord.listAll(Meal.class);
+
+        Log.v("purgeAndReplaceFixtures", "Sessions count: " + sessions.size());
+        Log.v("purgeAndReplaceFixtures", "Meals count: " + meals.size());
+
+        Session firstSession = sessions.get(0);
+        Meal firstMeal = meals.get(0);
+        Log.v("purgeAndReplaceFixtures", "First session: " + firstSession);
+        Log.v("purgeAndReplaceFixtures", "First meal: " + firstMeal);
+
+        Session lastSession = sessions.get(sessions.size()-1);
+        Meal lastMeal = meals.get(meals.size()-1);
+        Log.v("purgeAndReplaceFixtures", "Last session: " + lastSession);
+        Log.v("purgeAndReplaceFixtures", "Last meal: " + lastMeal);
     }
 }
