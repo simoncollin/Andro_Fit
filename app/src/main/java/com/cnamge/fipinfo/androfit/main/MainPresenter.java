@@ -1,4 +1,4 @@
-package com.cnamge.fipinfo.androfit;
+package com.cnamge.fipinfo.androfit.main;
 
 import android.view.View;
 

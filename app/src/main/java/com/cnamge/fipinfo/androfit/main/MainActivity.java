@@ -1,16 +1,22 @@
-package com.cnamge.fipinfo.androfit;
+package com.cnamge.fipinfo.androfit.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.util.Log;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cnamge.fipinfo.androfit.R;
+import com.cnamge.fipinfo.androfit.model.Meal;
+import com.cnamge.fipinfo.androfit.model.Session;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.orm.SugarRecord;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainInterface{
 
@@ -33,6 +39,12 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
 
         this.mainPresenter = new MainPresenter(this);
         this.setupBottomBar();
+
+        try {
+            this.purgeAndReplaceFixtures();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setupBottomBar(){
