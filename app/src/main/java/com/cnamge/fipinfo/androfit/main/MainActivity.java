@@ -39,12 +39,6 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
 
         this.mainPresenter = new MainPresenter(this);
         this.setupBottomBar();
-
-        try {
-            this.purgeAndReplaceFixtures();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void setupBottomBar(){
