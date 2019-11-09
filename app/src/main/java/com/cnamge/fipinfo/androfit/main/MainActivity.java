@@ -9,8 +9,14 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.cnamge.fipinfo.androfit.R;
+import com.cnamge.fipinfo.androfit.fragments.FriendsFragment;
+import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
+import com.cnamge.fipinfo.androfit.fragments.SessionsFragment;
+import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
 import com.cnamge.fipinfo.androfit.model.Meal;
 import com.cnamge.fipinfo.androfit.model.Session;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,26 +26,44 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainInterface{
 
-    // Bottom bar buttons
+    // Views objects
     private FloatingActionButton bottomBarButton;
     private ImageButton sessionsButton;
     private ImageButton mealsButton;
     private ImageButton friendsButton;
     private ImageButton settingsButton;
     private TextView appBarRightText;
-    MainPresenter mainPresenter;
+
+    private MainPresenter mainPresenter;
+
+    // Fragments instances
+    private SessionsFragment sessionsFragment;
+    private MealsFragment mealsFragment;
+    private FriendsFragment friendsFragment;
+    private SettingsFragment settingsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Setup Top Bar
         Toolbar appBar = findViewById(R.id.app_bar);
         setActionBar(appBar);
 
+        // Initialize fragments
+        this.sessionsFragment = new SessionsFragment();
+        this.mealsFragment = new MealsFragment();
+        this.friendsFragment = new FriendsFragment();
+        this.settingsFragment = new SettingsFragment();
+
+        this.showFragment(sessionsFragment);
+
         this.mainPresenter = new MainPresenter(this);
+
         this.setupBottomBar();
 
+        //FOR TEST ONLY
         try {
             this.purgeAndReplaceFixtures();
         } catch (Exception e) {
@@ -63,13 +87,6 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         this.settingsButton.setOnClickListener(view -> mainPresenter.onBottomBarSettingsButtonClick(view));
 
         this.selectView(this.sessionsButton);
-         
-      //FOR TEST ONLY
-         try {
-            this.purgeAndReplaceFixtures();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     // Activity life cycle
@@ -102,17 +119,27 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
             if (view == this.sessionsButton) {
                 this.sessionsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_sessions);
+                this.showFragment(this.sessionsFragment);
             } else if (view == this.mealsButton) {
                 this.mealsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_meals);
+                this.showFragment(this.mealsFragment);
             } else if (view == this.friendsButton) {
                 this.friendsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_friends);
+                this.showFragment(this.friendsFragment);
             } else if (view == this.settingsButton) {
                 this.settingsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_settings);
+                this.showFragment(this.settingsFragment);
             }
         }
+    }
+
+    private void showFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
     }
     
     // TODO: Remove after devs

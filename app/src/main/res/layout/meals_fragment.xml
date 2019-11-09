@@ -4,16 +4,12 @@
     android:id="@+id/meals_fragment">
 
     <TextView
-        android:id="@+id/meals_tmp_textView"
+        android:id="@+id/session_tmp_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="178dp"
-        android:layout_marginTop="356dp"
-        android:layout_marginEnd="178dp"
-        android:layout_marginBottom="356dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginBottom="354dp"
         android:text="@string/title_meals" />
 </RelativeLayout>
