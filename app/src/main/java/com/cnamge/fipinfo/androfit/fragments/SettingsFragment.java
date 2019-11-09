@@ -13,8 +13,6 @@ import com.cnamge.fipinfo.androfit.R;
 public class SettingsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.settings_fragments, container, false);
-
-        return root;
+        return inflater.inflate(R.layout.settings_fragments, container, false);
     }
 }
