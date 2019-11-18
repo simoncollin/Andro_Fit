@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
@@ -9,26 +10,61 @@
     android:clickable="true">
 
     <TextView
-        android:id="@+id/session_item_textView"
+        android:id="@+id/session_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="24dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:layout_marginBottom="24dp"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/separator"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--  Séparateur  -->
+    <TextView
+        android:id="@+id/session_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="76dp"
+        android:text="Location"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/session_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="76dp"
+        android:text="Duration"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/session_location" />
+
+    <TextView
+        android:id="@+id/session_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="Date"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/session_duration"
+        app:layout_constraintTop_toBottomOf="@+id/session_location" />
+
     <View
         android:id="@+id/separator"
         android:layout_width="0dp"
-        android:layout_height="1px"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="#DDDDDD"
+        android:layout_height="2dp"
+        android:background="@color/mainGreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

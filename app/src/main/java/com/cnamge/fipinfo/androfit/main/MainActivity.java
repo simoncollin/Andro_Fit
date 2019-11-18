@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         SugarRecord.deleteAll(Session.class);
         SugarRecord.deleteAll(Meal.class);
 
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 10; i++) {
             (new Session(
                 "Session number " + i,
                 "location " + i,

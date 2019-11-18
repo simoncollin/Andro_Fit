@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
 
+import java.util.Date;
 import java.util.List;
 
 public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.SessionsViewHolder>  {
@@ -38,8 +39,13 @@ public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.Sessio
     // Méthode qui sert à configurer l'interface
     public void onBindViewHolder(@NonNull SessionsViewHolder holder, int position) {
         final Session item = items.get(position);
-        holder.textView.setText(item.toString());
-        holder.textView.setOnClickListener(v -> listener.onItemClicked(item));
+
+        holder.sName.setText(item.getName());
+        holder.sLocation.setText(item.getLocation());
+        holder.sDate.setText("" + item.getBeginDate());
+        holder.sDuration.setText("" + (item.getEndDate()-item.getBeginDate()));
+
+        holder.sName.setOnClickListener(v -> listener.onItemClicked(item));
     }
 
     @Override
@@ -50,11 +56,17 @@ public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.Sessio
     // Objet représentant une cellule de la recyclerView
     static class SessionsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textView;
+        TextView sName;
+        TextView sLocation;
+        TextView sDate;
+        TextView sDuration;
 
         SessionsViewHolder(View session_item_view) {
             super(session_item_view);
-            this.textView = session_item_view.findViewById(R.id.session_item_textView);
+            this.sName = session_item_view.findViewById(R.id.session_name);
+            this.sLocation = session_item_view.findViewById(R.id.session_location);
+            this.sDate = session_item_view.findViewById(R.id.session_date);
+            this.sDuration = session_item_view.findViewById(R.id.session_duration);
         }
     }
 }
