@@ -151,8 +151,8 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
             (new Session(
                 "Session number " + i,
                 "location " + i,
-                System.currentTimeMillis(),
-                System.currentTimeMillis(),
+                System.currentTimeMillis() + (i * 6000),
+                System.currentTimeMillis() + (i * 6000000),
                 "description " + i
             )).save();
             (new Meal(
@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
             )).save();
         }
 
+
         List<Session> sessions = SugarRecord.listAll(Session.class);
         List<Meal> meals = SugarRecord.listAll(Meal.class);
 
@@ -171,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
 
         Session firstSession = sessions.get(0);
         Meal firstMeal = meals.get(0);
+        Log.v("purgeAndReplaceFixtures", "difference temps : " + firstSession.getDurationString());
         Log.v("purgeAndReplaceFixtures", "First session: " + firstSession);
         Log.v("purgeAndReplaceFixtures", "First meal: " + firstMeal);
 
