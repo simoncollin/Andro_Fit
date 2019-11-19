@@ -74,4 +74,14 @@ public class Session extends SugarRecord<Session> {
                 ", id=" + id +
                 '}';
     }
+
+    public String getBeginDateString(){
+        // TODO team back
+        return "09/10/2019"; // Il faut bien respecter ce format
+    }
+
+    public String getDurationString(){
+        // TODO team back
+        return "1:00h"; // Il faut bien respecter ce format
+    }
 }

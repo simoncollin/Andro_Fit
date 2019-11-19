@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
 
-import java.util.Date;
 import java.util.List;
 
 public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.SessionsViewHolder>  {
@@ -42,8 +41,8 @@ public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.Sessio
 
         holder.sName.setText(item.getName());
         holder.sLocation.setText(item.getLocation());
-        holder.sDate.setText("" + item.getBeginDate());
-        holder.sDuration.setText("" + (item.getEndDate()-item.getBeginDate()));
+        holder.sDate.setText(item.getBeginDateString());
+        holder.sDuration.setText(item.getDurationString());
 
         holder.sName.setOnClickListener(v -> listener.onItemClicked(item));
     }
