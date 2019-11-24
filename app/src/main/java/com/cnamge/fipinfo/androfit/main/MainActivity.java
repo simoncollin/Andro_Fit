@@ -120,18 +120,22 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
                 this.sessionsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_sessions);
                 this.showFragment(this.sessionsFragment);
+                this.mainPresenter.setCurrentFragment(MainPresenter.FragmentType.SESSIONS);
             } else if (view == this.mealsButton) {
                 this.mealsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_meals);
                 this.showFragment(this.mealsFragment);
+                this.mainPresenter.setCurrentFragment(MainPresenter.FragmentType.MEALS);
             } else if (view == this.friendsButton) {
                 this.friendsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_friends);
                 this.showFragment(this.friendsFragment);
+                this.mainPresenter.setCurrentFragment(MainPresenter.FragmentType.FRIENDS);
             } else if (view == this.settingsButton) {
                 this.settingsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_settings);
                 this.showFragment(this.settingsFragment);
+                this.mainPresenter.setCurrentFragment(MainPresenter.FragmentType.SETTINGS);
             }
         }
     }
