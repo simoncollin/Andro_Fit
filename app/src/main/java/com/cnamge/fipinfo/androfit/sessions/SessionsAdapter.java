@@ -43,8 +43,7 @@ public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.Sessio
         holder.sLocation.setText(item.getLocation());
         holder.sDate.setText(item.getBeginDateString());
         holder.sDuration.setText(item.getDurationString());
-
-        holder.sName.setOnClickListener(v -> listener.onItemClicked(item));
+        holder.itemView.setOnClickListener(v -> listener.onItemClicked(item));
     }
 
     @Override

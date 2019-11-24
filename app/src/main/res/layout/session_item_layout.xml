@@ -69,6 +69,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <View
+        android:id="@+id/rightVerticalBar"
+        android:layout_width="2dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/timer_image_session_item"
         android:layout_width="21dp"
@@ -84,7 +94,7 @@
         android:layout_width="20dp"
         android:layout_height="19dp"
         android:layout_marginTop="13dp"
-        android:layout_marginEnd="160dp"
+        android:layout_marginEnd="181dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location_pin_image_session_item"
         app:srcCompat="@mipmap/ic_calendar" />
@@ -94,7 +104,7 @@
         android:layout_width="22dp"
         android:layout_height="19dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="159dp"
+        android:layout_marginEnd="180dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_location_pin" />
