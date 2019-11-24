@@ -38,11 +38,11 @@
 
     <TextView
         android:id="@+id/session_duration"
-        android:layout_width="34dp"
-        android:layout_height="19dp"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="43dp"
-        android:text="1:00h"
+        android:text="01:00h"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/timer_image_session_item"
