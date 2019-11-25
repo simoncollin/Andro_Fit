@@ -31,28 +31,8 @@ public class SessionsFragment extends Fragment implements SessionsInterface {
 
         View rootView = inflater.inflate(R.layout.sessions_fragment, container, false);
         recyclerView = rootView.findViewById(R.id.sessions_recycler_view);
-
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-
         presenter = new SessionsPresenter(this);
-
-        swipeController = new SwipeController(new SwipeControllerActions() {
-            @Override
-            public void onRightClicked(int position) {
-                showMessage("Right Click !");
-            }
-        });
-        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
-        itemTouchhelper.attachToRecyclerView(recyclerView);
-
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-                swipeController.onDraw(c);
-            }
-        });
+        prepareRecyclerView();
 
         return rootView ;
     }
@@ -77,5 +57,35 @@ public class SessionsFragment extends Fragment implements SessionsInterface {
     @Override
     public void showMessage(String message) {
         Toast.makeText(this.getActivity(), message, Toast.LENGTH_LONG).show();
+    }
+
+    private void prepareRecyclerView() {
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+
+        SwipeControllerActions sca = new SwipeControllerActions() {
+            @Override
+            public void onDeleteClicked(int position) {
+                presenter.onDeleteButtonClicked(position);
+            }
+
+            @Override
+            public void onEditClicked(int position) {
+                presenter.onEditButtonClicked(position);
+            }
+        };
+
+        swipeController = new SwipeController(sca, this.getContext());
+
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
     }
 }

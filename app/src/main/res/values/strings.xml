@@ -8,6 +8,10 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+
+
 
     <!-- Content Description String -->
     <string name="cd_sessions">My sport sessions button</string>

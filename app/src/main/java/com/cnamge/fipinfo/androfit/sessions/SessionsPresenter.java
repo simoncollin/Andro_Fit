@@ -32,6 +32,14 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
         }
     }
 
+    public void onEditButtonClicked(int position){
+        sessionsInterface.showMessage("Edit button clicked : " + position);
+    }
+
+    public void onDeleteButtonClicked(int position){
+        sessionsInterface.showMessage("Delete button clicked : " + position);
+    }
+
     public SessionsInterface getViewInterface() {
         return sessionsInterface;
     }

@@ -2,7 +2,7 @@ package com.cnamge.fipinfo.androfit.helpers;
 
 public abstract class SwipeControllerActions {
 
-    public void onLeftClicked(int position) {}
+    public void onEditClicked(int position) {}
 
-    public void onRightClicked(int position) {}
+    public void onDeleteClicked(int position) {}
 }
