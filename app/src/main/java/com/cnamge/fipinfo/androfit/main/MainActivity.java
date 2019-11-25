@@ -15,10 +15,10 @@ import androidx.fragment.app.FragmentTransaction;
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.fragments.FriendsFragment;
 import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
-import com.cnamge.fipinfo.androfit.fragments.SessionsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
 import com.cnamge.fipinfo.androfit.model.Meal;
 import com.cnamge.fipinfo.androfit.model.Session;
+import com.cnamge.fipinfo.androfit.sessions.SessionsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orm.SugarRecord;
 
@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         this.setupBottomBar();
 
         //FOR TEST ONLY
-        try {
+        /*try {
             this.purgeAndReplaceFixtures();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void setupBottomBar(){
@@ -120,18 +120,22 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
                 this.sessionsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_sessions);
                 this.showFragment(this.sessionsFragment);
+                this.mainPresenter.setCurrentFragment(MainPresenter.FragmentType.SESSIONS);
             } else if (view == this.mealsButton) {
                 this.mealsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_meals);
                 this.showFragment(this.mealsFragment);
+                this.mainPresenter.setCurrentFragment(MainPresenter.FragmentType.MEALS);
             } else if (view == this.friendsButton) {
                 this.friendsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_friends);
                 this.showFragment(this.friendsFragment);
+                this.mainPresenter.setCurrentFragment(MainPresenter.FragmentType.FRIENDS);
             } else if (view == this.settingsButton) {
                 this.settingsButton.setAlpha(1f);
                 this.appBarRightText.setText(R.string.title_settings);
                 this.showFragment(this.settingsFragment);
+                this.mainPresenter.setCurrentFragment(MainPresenter.FragmentType.SETTINGS);
             }
         }
     }
@@ -147,12 +151,12 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         SugarRecord.deleteAll(Session.class);
         SugarRecord.deleteAll(Meal.class);
 
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 10; i++) {
             (new Session(
                 "Session number " + i,
                 "location " + i,
-                System.currentTimeMillis(),
-                System.currentTimeMillis(),
+                System.currentTimeMillis() + (i * 6000),
+                System.currentTimeMillis() + (i * 6000000),
                 "description " + i
             )).save();
             (new Meal(
@@ -163,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
             )).save();
         }
 
+
         List<Session> sessions = SugarRecord.listAll(Session.class);
         List<Meal> meals = SugarRecord.listAll(Meal.class);
 
@@ -171,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
 
         Session firstSession = sessions.get(0);
         Meal firstMeal = meals.get(0);
+        Log.v("purgeAndReplaceFixtures", "difference temps : " + firstSession.getDurationString());
         Log.v("purgeAndReplaceFixtures", "First session: " + firstSession);
         Log.v("purgeAndReplaceFixtures", "First meal: " + firstMeal);
 
