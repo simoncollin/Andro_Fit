@@ -27,6 +27,10 @@ public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.Sessio
         this.listener = listener;
     }
 
+    public List<Session> getItems() {
+        return this.items;
+    }
+
     @Override
     // Méthode appelé en interne pour généré une nouvelle cell. Doit retourner un objet de type ViewHolder
     public SessionsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

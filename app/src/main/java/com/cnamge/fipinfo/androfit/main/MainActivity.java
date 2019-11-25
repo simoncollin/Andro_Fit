@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         this.setupBottomBar();
 
         //FOR TEST ONLY
-        try {
+        /*try {
             this.purgeAndReplaceFixtures();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void setupBottomBar(){

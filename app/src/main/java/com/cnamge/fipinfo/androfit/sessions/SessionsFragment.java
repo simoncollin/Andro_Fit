@@ -31,7 +31,7 @@ public class SessionsFragment extends Fragment implements SessionsInterface {
 
         View rootView = inflater.inflate(R.layout.sessions_fragment, container, false);
         recyclerView = rootView.findViewById(R.id.sessions_recycler_view);
-        presenter = new SessionsPresenter(this);
+        presenter = new SessionsPresenter(this, this.getContext());
         prepareRecyclerView();
 
         return rootView ;
@@ -51,7 +51,9 @@ public class SessionsFragment extends Fragment implements SessionsInterface {
 
     @Override
     public void setItems(List<Session> items) {
-        recyclerView.setAdapter(new SessionsAdapter(items, this.presenter));
+        SessionsAdapter adapter = new SessionsAdapter(items, this.presenter);
+        recyclerView.setAdapter(adapter);
+        presenter.setAdapter(adapter);
     }
 
     @Override

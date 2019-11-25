@@ -1,5 +1,8 @@
 package com.cnamge.fipinfo.androfit.sessions;
 
+import android.content.Context;
+
+import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
 import com.orm.SugarRecord;
 
@@ -9,10 +12,17 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
 
     private SessionsInterface sessionsInterface;
     private List<Session> sessions;
+    private SessionsAdapter adapter;
+    private Context context;
 
-    SessionsPresenter(SessionsInterface mInterface) {
+    SessionsPresenter(SessionsInterface mInterface, Context context) {
         this.sessionsInterface = mInterface;
+        this. context = context;
         sessions = getAllSessions();
+    }
+
+    void setAdapter(SessionsAdapter adapter){
+        this.adapter = adapter;
     }
 
     void onResume() {
@@ -37,9 +47,19 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
     }
 
     public void onDeleteButtonClicked(int position){
-        sessionsInterface.showMessage("Delete button clicked : " + position);
+        Session sessionDeleted = sessions.get(position);
+        sessionsInterface.showMessage(sessionDeleted.getName() + context.getResources().getString(R.string.sessions_deleted));
+
+        sessionDeleted.delete(); // Delete from DB
+        this.sessions = getAllSessions(); // Refresh presenter sessions list
+
+        // Notify adapter that item has been removed
+        adapter.getItems().remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, adapter.getItemCount());
     }
 
+    // TODO: remove if not used
     public SessionsInterface getViewInterface() {
         return sessionsInterface;
     }

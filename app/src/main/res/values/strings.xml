@@ -9,8 +9,9 @@
     <string name="title_notifications">Notifications</string>
 
     <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
 
+    <string name="delete">Delete</string>
+    <string name="sessions_deleted"> : sessions deleted</string>
 
 
     <!-- Content Description String -->
