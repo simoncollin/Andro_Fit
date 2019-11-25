@@ -1,4 +1,4 @@
-package com.cnamge.fipinfo.androfit.sessions;
+package com.cnamge.fipinfo.androfit.sessions.sessionsList;
 
 import com.cnamge.fipinfo.androfit.model.Session;
 
@@ -8,4 +8,6 @@ public interface SessionsInterface {
     void setItems(List<Session> items);
 
     void showMessage(String message);
+
+    void launchDetailActivity(Session session);
 }

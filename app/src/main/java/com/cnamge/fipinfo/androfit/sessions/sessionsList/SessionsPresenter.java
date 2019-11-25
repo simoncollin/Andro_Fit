@@ -1,4 +1,4 @@
-package com.cnamge.fipinfo.androfit.sessions;
+package com.cnamge.fipinfo.androfit.sessions.sessionsList;
 
 import android.content.Context;
 
@@ -38,7 +38,7 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
     @Override
     public void onItemClicked(Session item) {
         if (sessionsInterface != null) {
-            sessionsInterface.showMessage(String.format("%s clicked", item.getName()));
+            this.sessionsInterface.launchDetailActivity(item);
         }
     }
 

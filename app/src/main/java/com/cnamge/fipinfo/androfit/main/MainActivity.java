@@ -18,7 +18,7 @@ import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
 import com.cnamge.fipinfo.androfit.model.Meal;
 import com.cnamge.fipinfo.androfit.model.Session;
-import com.cnamge.fipinfo.androfit.sessions.SessionsFragment;
+import com.cnamge.fipinfo.androfit.sessions.sessionsList.SessionsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orm.SugarRecord;
 

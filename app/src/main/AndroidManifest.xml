@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".sessions.sessionDetail.SessionDetailActivity" />
+
         <meta-data android:name="DATABASE" android:value="andro_fit.db" />
         <meta-data android:name="VERSION" android:value="1" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
