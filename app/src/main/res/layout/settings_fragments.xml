@@ -12,4 +12,27 @@
         android:layout_marginStart="170dp"
         android:layout_marginBottom="354dp"
         android:text="@string/title_settings" />
+
+    <TextView
+        android:id="@+id/langue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="602dp"
+        android:text="@string/langue"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/languageSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="273dp"
+        android:layout_marginBottom="601dp"
+        android:entries="@array/languageChoice"
+        android:prompt="@string/langue" />
+
 </RelativeLayout>

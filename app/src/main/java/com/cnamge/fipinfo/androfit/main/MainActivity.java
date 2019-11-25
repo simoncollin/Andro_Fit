@@ -1,5 +1,7 @@
 package com.cnamge.fipinfo.androfit.main;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.fragments.FriendsFragment;
+import com.cnamge.fipinfo.androfit.fragments.LocaleHelper;
 import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
 import com.cnamge.fipinfo.androfit.model.Meal;
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         this.mainPresenter = new MainPresenter(this);
 
         this.setupBottomBar();
+
+
 
         //FOR TEST ONLY
         try {
@@ -179,4 +184,5 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         Log.v("purgeAndReplaceFixtures", "Last session: " + lastSession);
         Log.v("purgeAndReplaceFixtures", "Last meal: " + lastMeal);
     }
+
 }

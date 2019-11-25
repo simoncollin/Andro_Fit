@@ -1,17 +1,24 @@
 <resources>
     <string name="app_name">Andro\'Fit</string>
-    <string name="title_sessions">My sessions</string>
-    <string name="title_meals">My meals</string>
-    <string name="title_friends">My friends</string>
-    <string name="title_settings">Settings</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_sessions">Séances</string>
+    <string name="title_meals">Repas</string>
+    <string name="title_friends">Amis</string>
+    <string name="title_settings">Options</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_dashboard">Tableau de Bord</string>
     <string name="title_notifications">Notifications</string>
 
 
     <!-- Content Description String -->
-    <string name="cd_sessions">My sport sessions button</string>
-    <string name="cd_meals">My meals button</string>
-    <string name="cd_friends">My friends button</string>
-    <string name="cd_settings">Settings button</string>
+    <string name="cd_sessions" translatable="false">My sport sessions button</string>
+    <string name="cd_meals" translatable="false">My meals button</string>
+    <string name="cd_friends" translatable="false">My friends button</string>
+    <string name="cd_settings" translatable="false">Settings button</string>
+
+
+    <string name="langue">Langue :</string>
+    <string-array name="languageChoice">
+        <item>Français</item>
+        <item>English</item>
+    </string-array>
 </resources>
