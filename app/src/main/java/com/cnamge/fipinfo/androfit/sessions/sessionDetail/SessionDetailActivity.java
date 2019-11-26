@@ -1,5 +1,6 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionDetail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
+import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
 
 public class SessionDetailActivity extends AppCompatActivity implements SessionDetailInterface {
 
@@ -91,8 +93,10 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
 
     @Override
     public void goToEditActivity(Session session) {
-        // TODO when edit activity is done
-        Toast.makeText(this, "Go to edit " + session.getName(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, SessionEditActivity.class);
+        intent.putExtra(getString(R.string.session_intent_name), session.getId());
+        intent.putExtra(getString(R.string.session_intent_edit_context_name), getString(R.string.session_intent_context_edit));
+        startActivity(intent);
     }
 
     @Override

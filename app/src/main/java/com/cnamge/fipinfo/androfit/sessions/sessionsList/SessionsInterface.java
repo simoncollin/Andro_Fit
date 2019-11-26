@@ -10,4 +10,6 @@ public interface SessionsInterface {
     void showMessage(String message);
 
     void launchDetailActivity(Session session);
+
+    void goToEditActivity(Session session);
 }
