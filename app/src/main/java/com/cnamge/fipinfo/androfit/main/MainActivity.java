@@ -18,7 +18,7 @@ import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
 import com.cnamge.fipinfo.androfit.model.Meal;
 import com.cnamge.fipinfo.androfit.model.Session;
-import com.cnamge.fipinfo.androfit.sessions.SessionsFragment;
+import com.cnamge.fipinfo.androfit.sessions.sessionsList.SessionsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orm.SugarRecord;
 
@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         this.setupBottomBar();
 
         //FOR TEST ONLY
-        /*try {
+        try {
             this.purgeAndReplaceFixtures();
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     private void setupBottomBar(){
@@ -152,17 +152,24 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         SugarRecord.deleteAll(Meal.class);
 
         for (int i = 1; i <= 10; i++) {
+            String desc;
+            if (i%2 == 0){
+                desc = "description " + i;
+            }else {
+                desc = "";
+            }
+
             (new Session(
                 "Session number " + i,
                 "location " + i,
                 System.currentTimeMillis() + (i * 6000),
                 System.currentTimeMillis() + (i * 6000000),
-                "description " + i
+                desc
             )).save();
             (new Meal(
                 "Meal number " + i,
                 System.currentTimeMillis(),
-                "description " + i,
+                desc,
                 "image " + i
             )).save();
         }

@@ -1,4 +1,4 @@
-package com.cnamge.fipinfo.androfit.sessions;
+package com.cnamge.fipinfo.androfit.sessions.sessionsList;
 
 import android.view.LayoutInflater;
 import android.view.View;

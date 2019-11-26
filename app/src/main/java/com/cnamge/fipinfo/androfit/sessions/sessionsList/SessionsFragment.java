@@ -1,5 +1,6 @@
-package com.cnamge.fipinfo.androfit.sessions;
+package com.cnamge.fipinfo.androfit.sessions.sessionsList;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.helpers.SwipeController;
 import com.cnamge.fipinfo.androfit.helpers.SwipeControllerActions;
 import com.cnamge.fipinfo.androfit.model.Session;
+import com.cnamge.fipinfo.androfit.sessions.sessionDetail.SessionDetailActivity;
 
 import java.util.List;
 
@@ -89,5 +91,12 @@ public class SessionsFragment extends Fragment implements SessionsInterface {
                 swipeController.onDraw(c);
             }
         });
+    }
+
+    @Override
+    public void launchDetailActivity(Session session){
+        Intent intent = new Intent(this.getActivity(), SessionDetailActivity.class);
+        intent.putExtra(getContext().getString(R.string.session_intent_name), session.getId());
+        startActivity(intent);
     }
 }
