@@ -17,11 +17,6 @@ public class SessionDetailPresenter {
         sessionIDetailInterface = null;
     }
 
-    void onFacebookButtonClicked() {
-        // TODO back : Fonctionnalité de partage sur facebook
-        sessionIDetailInterface.showMessage("Facebook sharing button clicked");
-    }
-
     void onBackButtonClicked(){
         sessionIDetailInterface.goBack();
     }

@@ -1,5 +1,6 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionDetail;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareButton;
 
 public class SessionDetailActivity extends AppCompatActivity implements SessionDetailInterface {
 
@@ -22,7 +25,7 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
     private TextView sessionDuration;
     private TextView sessionDescriptionContent;
     private TextView sessionDescriptionLabel;
-    private Button sessionShareOnFacebookButton;
+    private ShareButton sessionShareOnFacebookButton;
     private ImageButton backButton;
     private ImageButton editButton;
 
@@ -38,6 +41,10 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         appbarRightTextView.setText(getString(R.string.title_session_detail));
 
         linkActivityToXml();
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                .build();
+        this.sessionShareOnFacebookButton.setShareContent(content);
 
         //récuparation de l'intent
         if (getIntent() != null && getIntent().getExtras() != null) {
@@ -64,7 +71,6 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         this.backButton = findViewById(R.id.session_detail_back_button);
         this.editButton = findViewById(R.id.session_detail_edit_button);
 
-        this.sessionShareOnFacebookButton.setOnClickListener(v -> presenter.onFacebookButtonClicked());
         this.editButton.setOnClickListener(v -> presenter.onEditButtonClicked());
         this.backButton.setOnClickListener(v -> presenter.onBackButtonClicked());
     }
