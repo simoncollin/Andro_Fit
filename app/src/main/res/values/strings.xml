@@ -8,7 +8,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_session_detail">Session detail</string>
-
+    <string name="description_label">Description</string>
 
     <string name="edit">Edit</string>
 

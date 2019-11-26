@@ -1,18 +1,28 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionDetail;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
+import com.cnamge.fipinfo.androfit.model.Session;
 
-public class SessionDetailActivity extends AppCompatActivity implements SessionDetailInterface{
+public class SessionDetailActivity extends AppCompatActivity implements SessionDetailInterface {
 
     private SessionDetailPresenter presenter;
 
-    private TextView textViewTest;
+    private TextView sessionTitle;
+    private TextView sessionLocation;
+    private TextView sessionDate;
+    private TextView sessionDuration;
+    private TextView sessionDescriptionContent;
+    private TextView sessionDescriptionLabel;
+    private Button sessionShareOnFacebook;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +34,7 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         TextView appbarRightTextView = findViewById(R.id.app_bar_rightTextView);
         appbarRightTextView.setText(getString(R.string.title_session_detail));
 
-        this.textViewTest = findViewById(R.id.textView_test);
+        linkActivityToXml();
 
         //récuparation de l'intent
         if (getIntent() != null && getIntent().getExtras() != null) {
@@ -39,9 +49,37 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         super.onDestroy();
     }
 
+    private void linkActivityToXml(){
+        this.sessionTitle = findViewById(R.id.session_detail_title);
+        this.sessionLocation = findViewById(R.id.session_detail_location);
+        this.sessionDate = findViewById(R.id.session_detail_date);
+        this.sessionDuration = findViewById(R.id.session_detail_duration);
+        this.sessionDescriptionLabel = findViewById(R.id.session_description_label);
+        this.sessionDescriptionContent = findViewById(R.id.session_description_content);
+
+        this.sessionShareOnFacebook = findViewById(R.id.session_detail_facebook_button);
+        this.sessionShareOnFacebook.setOnClickListener(v -> presenter.onFacebookButtonClicked());
+    }
 
     @Override
-    public void setTextViewText(String text) {
-        textViewTest.setText(text);
+    public void setupView(Session session) {
+        this.sessionTitle.setText(session.getName());
+        this.sessionLocation.setText(session.getLocation());
+        this.sessionDate.setText(session.getBeginDateString());
+        this.sessionDuration.setText(session.getDurationString());
+
+        if (session.getDescription().isEmpty() || session.getDescription() == null) {
+            this.sessionDescriptionContent.setAlpha(0f);
+            this.sessionDescriptionLabel.setAlpha(0f);
+        }else{
+            this.sessionDescriptionContent.setText(session.getDescription());
+        }
     }
+
+    @Override
+    public void showMessage(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+
 }

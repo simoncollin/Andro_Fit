@@ -10,10 +10,15 @@ public class SessionDetailPresenter {
     SessionDetailPresenter(SessionDetailInterface mInterface, long sessionId) {
         this.sessionIDetailInterface = mInterface;
         this.detailledSession = Session.find(Session.class, "id = ?","" + sessionId).get(0);
-        sessionIDetailInterface.setTextViewText(detailledSession.toString());
+        sessionIDetailInterface.setupView(detailledSession);
     }
 
     void onDestroy() {
         sessionIDetailInterface = null;
+    }
+
+    void onFacebookButtonClicked() {
+        // TODO back : Fonctionnalité de partage sur facebook
+        sessionIDetailInterface.showMessage("Facebook sharing button clicked");
     }
 }
