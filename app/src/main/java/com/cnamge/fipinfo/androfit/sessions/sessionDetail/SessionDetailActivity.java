@@ -2,6 +2,7 @@ package com.cnamge.fipinfo.androfit.sessions.sessionDetail;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -21,7 +22,9 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
     private TextView sessionDuration;
     private TextView sessionDescriptionContent;
     private TextView sessionDescriptionLabel;
-    private Button sessionShareOnFacebook;
+    private Button sessionShareOnFacebookButton;
+    private ImageButton backButton;
+    private ImageButton editButton;
 
 
     @Override
@@ -57,15 +60,20 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         this.sessionDescriptionLabel = findViewById(R.id.session_description_label);
         this.sessionDescriptionContent = findViewById(R.id.session_description_content);
 
-        this.sessionShareOnFacebook = findViewById(R.id.session_detail_facebook_button);
-        this.sessionShareOnFacebook.setOnClickListener(v -> presenter.onFacebookButtonClicked());
+        this.sessionShareOnFacebookButton = findViewById(R.id.session_detail_facebook_button);
+        this.backButton = findViewById(R.id.session_detail_back_button);
+        this.editButton = findViewById(R.id.session_detail_edit_button);
+
+        this.sessionShareOnFacebookButton.setOnClickListener(v -> presenter.onFacebookButtonClicked());
+        this.editButton.setOnClickListener(v -> presenter.onEditButtonClicked());
+        this.backButton.setOnClickListener(v -> presenter.onBackButtonClicked());
     }
 
     @Override
     public void setupView(Session session) {
         this.sessionTitle.setText(session.getName());
         this.sessionLocation.setText(session.getLocation());
-        this.sessionDate.setText(session.getBeginDateString());
+        this.sessionDate.setText(session.getBeginDateHourString());
         this.sessionDuration.setText(session.getDurationString());
 
         if (session.getDescription().isEmpty() || session.getDescription() == null) {
@@ -79,6 +87,17 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
     @Override
     public void showMessage(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void goToEditActivity(Session session) {
+        // TODO when edit activity is done
+        Toast.makeText(this, "Go to edit " + session.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void goBack() {
+        this.finish();
     }
 
 

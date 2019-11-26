@@ -21,4 +21,12 @@ public class SessionDetailPresenter {
         // TODO back : Fonctionnalité de partage sur facebook
         sessionIDetailInterface.showMessage("Facebook sharing button clicked");
     }
+
+    void onBackButtonClicked(){
+        sessionIDetailInterface.goBack();
+    }
+
+    void onEditButtonClicked(){
+        sessionIDetailInterface.goToEditActivity(this.detailledSession);
+    }
 }

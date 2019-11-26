@@ -84,6 +84,12 @@ public class Session extends SugarRecord<Session> {
         return df2.format(date); // Format 09/10/2019
     }
 
+    public String getBeginDateHourString(){
+        Date date = new Date(this.beginDate);
+        SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/YYYY - hh:mm");
+        return df2.format(date); // Format 09/10/2019
+    }
+
     public String getDurationString(){
         long diff = this.endDate - this.beginDate;
         SimpleDateFormat df2 = new SimpleDateFormat("hh:mm");

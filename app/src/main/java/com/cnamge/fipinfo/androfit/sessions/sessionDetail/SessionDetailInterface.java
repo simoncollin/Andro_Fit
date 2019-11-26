@@ -4,6 +4,8 @@ import com.cnamge.fipinfo.androfit.model.Session;
 
 public interface SessionDetailInterface {
 
-    public void setupView(Session session);
-    public void showMessage(String text);
+    void setupView(Session session);
+    void showMessage(String text);
+    void goToEditActivity(Session session);
+    void goBack();
 }
