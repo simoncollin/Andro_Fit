@@ -15,11 +15,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "FB_APP_ID", properties['FB_APP_ID']
-        resValue "string", "facebook_app_id", properties['FB_APP_ID']
-        manifestPlaceholders = [
-                facebook_app_id: properties['FB_APP_ID']
-        ]
+        resValue "string", "facebook_app_id", properties['facebook_app_id']
+        resValue "string", "facebook_content_provider_authorities", "com.facebook.app.FacebookContentProvider" + properties['facebook_app_id']
     }
     buildTypes {
         release {

@@ -7,9 +7,9 @@ public class SessionDetailPresenter {
     private SessionDetailInterface sessionIDetailInterface;
     private Session detailledSession;
 
-    SessionDetailPresenter(SessionDetailInterface mInterface, long sessionId) {
+    SessionDetailPresenter(SessionDetailInterface mInterface, Session session) {
         this.sessionIDetailInterface = mInterface;
-        this.detailledSession = Session.find(Session.class, "id = ?","" + sessionId).get(0);
+        this.detailledSession = session;
         sessionIDetailInterface.setupView(detailledSession);
     }
 
