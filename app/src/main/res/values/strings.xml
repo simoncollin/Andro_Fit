@@ -11,10 +11,13 @@
     <string name="title_session_edit">Edit session</string>
 
     <!-- Srings used in session fragment -->
-    <string name="description_label">Description</string>
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
     <string name="sessions_deleted"> : sessions deleted</string>
+    <string name="title_label">Title</string>
+    <string name="location_label">Location</string>
+    <string name="begin_date_label">Beginning Date</string>
+    <string name="end_date_label">End Date</string>
+    <string name="description_label">Description</string>
+
     <string name="session_intent_name">SESSION_INTENT</string>
     <string name="session_intent_edit_context_name">SESSION_INTENT_CONTEXT</string>
     <string name="session_intent_context_edit">SESSION_EDIT_INTENT</string>
@@ -25,4 +28,12 @@
     <string name="cd_meals">My meals button</string>
     <string name="cd_friends">My friends button</string>
     <string name="cd_settings">Settings button</string>
+
+    <!-- Globally used String -->
+    <string name="save_button_label">Save</string>
+    <string name="cancel_button_label">Cancel</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="optional">Optional*</string>
+    <string name="required">Required*</string>
 </resources>

@@ -4,23 +4,28 @@ import com.cnamge.fipinfo.androfit.model.Session;
 
 public class SessionEditPresenter {
 
+    public enum SessionEditContext {
+        MODIFICATION,
+        CREATION
+    }
+
     private SessionEditInterface mInterface;
     private Session currentSession;
+    private SessionEditContext currentEditContext;
+
 
     SessionEditPresenter(SessionEditInterface mInterface, long sessionId) {
         this.mInterface = mInterface;
         this.currentSession = Session.find(Session.class, "id = ?","" + sessionId).get(0);
-
-        // TODO: setup view with current session info
-        //mInterface.setupView(currentSession);
+        this.currentEditContext = SessionEditContext.MODIFICATION;
+        mInterface.setupViewForEdition(currentSession);
     }
 
     SessionEditPresenter(SessionEditInterface mInterface) {
         this.mInterface = mInterface;
         this.currentSession = new Session();
-
-        // TODO: setup view with current session info
-        //mInterface.setupView(currentSession);
+        this.currentEditContext = SessionEditContext.CREATION;
+        mInterface.setupViewForCreation();
     }
 
     void onDestroy() {
@@ -31,7 +36,7 @@ public class SessionEditPresenter {
         mInterface.cancel();
     }
 
-    void onRegisterButtonClicked(String title, String location, long beginningDate, long endDate, String description){
+    void onRegisterButtonClicked(){
         // TODO Enregistrer en BD les modifs
         mInterface.registerModification();
     }
