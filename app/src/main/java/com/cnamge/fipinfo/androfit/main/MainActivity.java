@@ -1,6 +1,11 @@
 package com.cnamge.fipinfo.androfit.main;
 
+import android.Manifest;
+import android.content.ContentValues;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -8,7 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -23,8 +31,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orm.SugarRecord;
 
 import java.util.List;
+import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements MainInterface{
+import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
+
+public class MainActivity extends AppCompatActivity implements MainInterface {
 
     // Views objects
     private FloatingActionButton bottomBarButton;
@@ -63,15 +74,19 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
 
         this.setupBottomBar();
 
+
         //FOR TEST ONLY
+
         try {
             this.purgeAndReplaceFixtures();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR}, 1);
     }
 
-    private void setupBottomBar(){
+    private void setupBottomBar() {
         this.bottomBarButton = findViewById(R.id.bottom_bar_button);
         this.sessionsButton = findViewById(R.id.bottom_bar_sessions_button);
         this.mealsButton = findViewById(R.id.bottom_bar_meals_button);
@@ -109,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
     }
 
     @Override
-    public void selectView(View view){
+    public void selectView(View view) {
         if (view != null) {
             this.sessionsButton.setAlpha(0.5f);
             this.mealsButton.setAlpha(0.5f);
@@ -140,12 +155,12 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         }
     }
 
-    private void showFragment(Fragment fragment){
+    private void showFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
     }
-    
+
     // TODO: Remove after devs
     protected void purgeAndReplaceFixtures() throws Exception {
         SugarRecord.deleteAll(Session.class);
@@ -187,9 +202,59 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         Log.v("purgeAndReplaceFixtures", "First session: " + firstSession);
         Log.v("purgeAndReplaceFixtures", "First meal: " + firstMeal);
 
-        Session lastSession = sessions.get(sessions.size()-1);
-        Meal lastMeal = meals.get(meals.size()-1);
+        Session lastSession = sessions.get(sessions.size() - 1);
+        Meal lastMeal = meals.get(meals.size() - 1);
         Log.v("purgeAndReplaceFixtures", "Last session: " + lastSession);
         Log.v("purgeAndReplaceFixtures", "Last meal: " + lastMeal);
+    }
+
+    private long getCalendarId() {
+        ContentValues values = new ContentValues();
+        values.put(
+            CalendarContract.Calendars.ACCOUNT_NAME,
+            "andro_fit"
+        );
+        values.put(
+            CalendarContract.Calendars.ACCOUNT_TYPE,
+            CalendarContract.ACCOUNT_TYPE_LOCAL
+        );
+        values.put(
+            CalendarContract.Calendars.NAME,
+            "AndroFit Events"
+        );
+        values.put(
+            CalendarContract.Calendars.CALENDAR_DISPLAY_NAME,
+            "AndroFit Events"
+        );
+        values.put(
+            CalendarContract.Calendars.CALENDAR_ACCESS_LEVEL,
+            CalendarContract.Calendars.CAL_ACCESS_OWNER
+        );
+
+        Uri.Builder builder = CalendarContract.Calendars.CONTENT_URI.buildUpon();
+        builder.appendQueryParameter(
+            CalendarContract.Calendars.ACCOUNT_TYPE,
+                CalendarContract.ACCOUNT_TYPE_LOCAL
+        );
+        Uri uri = getApplicationContext().getContentResolver().insert(builder.build(), values);
+
+        return Long.parseLong(Objects.requireNonNull(Objects.requireNonNull(uri).getLastPathSegment()));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.v("Calendar tests", "Local calendar id : " + this.getCalendarId());
+
+                }
+                break;
+            }
+
+        }
     }
 }
