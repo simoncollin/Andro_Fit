@@ -1,7 +1,10 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionDetail;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
 
 public class SessionDetailActivity extends AppCompatActivity implements SessionDetailInterface {
 
@@ -22,7 +28,7 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
     private TextView sessionDuration;
     private TextView sessionDescriptionContent;
     private TextView sessionDescriptionLabel;
-    private Button sessionShareOnFacebookButton;
+    private ShareButton sessionShareOnFacebookButton;
     private ImageButton backButton;
     private ImageButton editButton;
 
@@ -39,11 +45,33 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
 
         linkActivityToXml();
 
-        //récuparation de l'intent
-        if (getIntent() != null && getIntent().getExtras() != null) {
-            long sessionId = (long) getIntent().getExtras().get(getString(R.string.session_intent_name));
-            this.presenter = new SessionDetailPresenter(this, sessionId);
+        if (getIntent() == null || getIntent().getExtras() == null) {
+            return;
         }
+
+        long sessionId = (long) getIntent().getExtras().get(getString(R.string.session_intent_name));
+        Session currentSession = Session.findById(Session.class, sessionId);
+        this.presenter = new SessionDetailPresenter(this, currentSession);
+
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.BLACK);
+        paint.setTextAlign(Paint.Align.LEFT);
+
+        String text = currentSession.toString();
+        float baseline = -paint.ascent();
+        int width = (int) (paint.measureText(text) + 0.5f);
+        int height = (int) (baseline + paint.descent() + 0.5f);
+
+        Bitmap image = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        Canvas canvas = new Canvas(image);
+        canvas.drawText(text, 0, baseline, paint);
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(image)
+                .build();
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .build();
+        this.sessionShareOnFacebookButton.setShareContent(content);
     }
 
     @Override
@@ -64,7 +92,6 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         this.backButton = findViewById(R.id.session_detail_back_button);
         this.editButton = findViewById(R.id.session_detail_edit_button);
 
-        this.sessionShareOnFacebookButton.setOnClickListener(v -> presenter.onFacebookButtonClicked());
         this.editButton.setOnClickListener(v -> presenter.onEditButtonClicked());
         this.backButton.setOnClickListener(v -> presenter.onBackButtonClicked());
     }

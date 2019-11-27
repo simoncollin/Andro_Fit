@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-
     package="com.cnamge.fipinfo.androfit">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name="com.orm.SugarApp"
@@ -29,6 +30,12 @@
         <meta-data android:name="VERSION" android:value="1" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.cnamge.fipinfo.androfit.model" />
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
+        <provider android:authorities="@string/facebook_content_provider_authorities"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>
