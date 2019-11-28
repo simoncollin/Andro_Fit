@@ -2,7 +2,6 @@ package com.cnamge.fipinfo.androfit.sessions.sessionDetail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +13,11 @@ import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
 import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
 
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
+
+
 public class SessionDetailActivity extends AppCompatActivity implements SessionDetailInterface {
 
     private SessionDetailPresenter presenter;
@@ -24,7 +28,7 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
     private TextView sessionDuration;
     private TextView sessionDescriptionContent;
     private TextView sessionDescriptionLabel;
-    private Button sessionShareOnFacebookButton;
+    private ShareButton sessionShareOnFacebookButton;
     private ImageButton backButton;
     private ImageButton editButton;
 
@@ -41,11 +45,13 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
 
         linkActivityToXml();
 
-        //récuparation de l'intent
-        if (getIntent() != null && getIntent().getExtras() != null) {
-            long sessionId = (long) getIntent().getExtras().get(getString(R.string.session_intent_name));
-            this.presenter = new SessionDetailPresenter(this, sessionId);
+        if (getIntent() == null || getIntent().getExtras() == null) {
+            return;
         }
+
+        long sessionId = (long) getIntent().getExtras().get(getString(R.string.session_intent_name));
+        this.presenter = new SessionDetailPresenter(this, sessionId);
+        this.setFacebookButtonShareContent();
     }
 
     @Override
@@ -66,7 +72,6 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         this.backButton = findViewById(R.id.session_detail_back_button);
         this.editButton = findViewById(R.id.session_detail_edit_button);
 
-        this.sessionShareOnFacebookButton.setOnClickListener(v -> presenter.onFacebookButtonClicked());
         this.editButton.setOnClickListener(v -> presenter.onEditButtonClicked());
         this.backButton.setOnClickListener(v -> presenter.onBackButtonClicked());
     }
@@ -104,5 +109,13 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         this.finish();
     }
 
-
+    public void setFacebookButtonShareContent() {
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(this.presenter.getBitmapFromSession())
+                .build();
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .build();
+        this.sessionShareOnFacebookButton.setShareContent(content);
+    }
 }
