@@ -105,7 +105,7 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
 
     public void setFacebookButtonShareContent() {
         SharePhoto photo = new SharePhoto.Builder()
-                .setBitmap(this.presenter.getBitmapFromSession())
+                .setBitmap(this.presenter.getSessionBitmap())
                 .build();
         SharePhotoContent content = new SharePhotoContent.Builder()
                 .addPhoto(photo)

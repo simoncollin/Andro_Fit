@@ -30,19 +30,22 @@ public class SessionDetailPresenter {
         sessionIDetailInterface.goToEditActivity(this.detailledSession);
     }
 
-    Bitmap getBitmapFromSession() {
+    Bitmap getSessionBitmap() {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.BLACK);
-        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setColor(Color.WHITE);
+        paint.setStyle(Paint.Style.FILL);
 
         String text = this.detailledSession.toString();
-        float baseline = -paint.ascent();
-        int width = (int) (paint.measureText(text) + 0.5f);
-        int height = (int) (baseline + paint.descent() + 0.5f);
+        int width = 1200;
+        int height = 630;
 
         Bitmap image = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
         Canvas canvas = new Canvas(image);
-        canvas.drawText(text, 0, baseline, paint);
+        canvas.drawPaint(paint);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(20);
+        paint.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText(text, 10, 25, paint);
 
         return image;
     }
