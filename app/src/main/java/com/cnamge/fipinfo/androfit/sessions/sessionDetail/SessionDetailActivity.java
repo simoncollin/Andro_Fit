@@ -11,11 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
+import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
+
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
 import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
+
 
 public class SessionDetailActivity extends AppCompatActivity implements SessionDetailInterface {
 
