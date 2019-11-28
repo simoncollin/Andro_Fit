@@ -24,7 +24,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".sessions.sessionDetail.SessionDetailActivity" />
+        <activity
+            android:name=".sessions.sessionDetail.SessionDetailActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".sessions.sessionEdit.SessionEditActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data android:name="DATABASE" android:value="andro_fit.db" />
         <meta-data android:name="VERSION" android:value="1" />

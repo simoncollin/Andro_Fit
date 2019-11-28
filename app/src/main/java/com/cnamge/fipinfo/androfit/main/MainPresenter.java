@@ -22,7 +22,7 @@ class MainPresenter {
     void onBottomBarAddButtonClick(){
         switch (this.currentFragment) {
             case SESSIONS:
-                mainInterface.showMessage("Bottom Bar button clicked : SESSIONS");
+                mainInterface.addSession();
                 break;
             case MEALS:
                 mainInterface.showMessage("Bottom Bar button clicked : MEALS");
