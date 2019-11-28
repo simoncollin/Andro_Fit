@@ -1,25 +1,39 @@
 <resources>
     <string name="app_name">Andro\'Fit</string>
+
+    <!-- App bar right text title -->
     <string name="title_sessions">My sessions</string>
     <string name="title_meals">My meals</string>
     <string name="title_friends">My friends</string>
     <string name="title_settings">Settings</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_session_detail">Session detail</string>
+    <string name="title_session_add">Add session</string>
+    <string name="title_session_edit">Edit session</string>
+
+    <!-- Srings used in session fragment -->
+    <string name="sessions_deleted"> : sessions deleted</string>
+    <string name="title_label">Title</string>
+    <string name="location_label">Location</string>
+    <string name="begin_date_label">Beginning Date</string>
+    <string name="end_date_label">End Date</string>
     <string name="description_label">Description</string>
 
-    <string name="edit">Edit</string>
-
-    <string name="delete">Delete</string>
-    <string name="sessions_deleted"> : sessions deleted</string>
-
     <string name="session_intent_name">SESSION_INTENT</string>
+    <string name="session_intent_edit_context_name">SESSION_INTENT_CONTEXT</string>
+    <string name="session_intent_context_edit">SESSION_EDIT_INTENT</string>
+    <string name="session_intent_context_add">SESSION_ADD_INTENT</string>
 
     <!-- Content Description String -->
     <string name="cd_sessions">My sport sessions button</string>
     <string name="cd_meals">My meals button</string>
     <string name="cd_friends">My friends button</string>
     <string name="cd_settings">Settings button</string>
+
+    <!-- Globally used String -->
+    <string name="save_button_label">Save</string>
+    <string name="cancel_button_label">Cancel</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="optional">Optional*</string>
+    <string name="required">Required*</string>
 </resources>
