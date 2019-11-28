@@ -43,7 +43,7 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
     }
 
     public void onEditButtonClicked(int position){
-        sessionsInterface.showMessage("Edit button clicked : " + position);
+        sessionsInterface.goToEditActivity(sessions.get(position));
     }
 
     public void onDeleteButtonClicked(int position){

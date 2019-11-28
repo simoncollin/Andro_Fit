@@ -19,6 +19,7 @@ import com.cnamge.fipinfo.androfit.helpers.SwipeController;
 import com.cnamge.fipinfo.androfit.helpers.SwipeControllerActions;
 import com.cnamge.fipinfo.androfit.model.Session;
 import com.cnamge.fipinfo.androfit.sessions.sessionDetail.SessionDetailActivity;
+import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
 
 import java.util.List;
 
@@ -99,4 +100,13 @@ public class SessionsFragment extends Fragment implements SessionsInterface {
         intent.putExtra(getContext().getString(R.string.session_intent_name), session.getId());
         startActivity(intent);
     }
+
+    @Override
+    public void goToEditActivity(Session session) {
+        Intent intent = new Intent(this.getActivity(), SessionEditActivity.class);
+        intent.putExtra(getString(R.string.session_intent_name), session.getId());
+        intent.putExtra(getString(R.string.session_intent_edit_context_name), getString(R.string.session_intent_context_edit));
+        startActivity(intent);
+    }
+
 }

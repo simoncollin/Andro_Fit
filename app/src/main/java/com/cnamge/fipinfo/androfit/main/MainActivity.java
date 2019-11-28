@@ -1,5 +1,6 @@
 package com.cnamge.fipinfo.androfit.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
 import com.cnamge.fipinfo.androfit.model.Meal;
 import com.cnamge.fipinfo.androfit.model.Session;
+import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
 import com.cnamge.fipinfo.androfit.sessions.sessionsList.SessionsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orm.SugarRecord;
@@ -138,6 +140,13 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
                 this.mainPresenter.setCurrentFragment(MainPresenter.FragmentType.SETTINGS);
             }
         }
+    }
+
+    @Override
+    public void addSession() {
+        Intent intent = new Intent(this, SessionEditActivity.class);
+        intent.putExtra(getString(R.string.session_intent_edit_context_name), getString(R.string.session_intent_context_add));
+        startActivity(intent);
     }
 
     private void showFragment(Fragment fragment){

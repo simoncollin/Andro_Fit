@@ -7,4 +7,6 @@ public interface MainInterface {
     void showMessage(String message);
 
     void selectView(View view);
+
+    void addSession();
 }
