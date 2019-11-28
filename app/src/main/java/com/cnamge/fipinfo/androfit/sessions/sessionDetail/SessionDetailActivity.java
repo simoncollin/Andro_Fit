@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
+import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
@@ -48,7 +49,7 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         }
 
         long sessionId = (long) getIntent().getExtras().get(getString(R.string.session_intent_name));
-        this.presenter = new SessionDetailPresenter(this, sessionId);
+        this.presenter = new SessionDetailPresenter(this, sessionId, getApplicationContext());
         this.setFacebookButtonShareContent();
     }
 
@@ -113,7 +114,10 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
                 .build();
         SharePhotoContent content = new SharePhotoContent.Builder()
                 .addPhoto(photo)
-                .build();
+                .setShareHashtag(new ShareHashtag.Builder()
+                        .setHashtag("#AndroFit")
+                        .build()
+                ).build();
         this.sessionShareOnFacebookButton.setShareContent(content);
     }
 }
