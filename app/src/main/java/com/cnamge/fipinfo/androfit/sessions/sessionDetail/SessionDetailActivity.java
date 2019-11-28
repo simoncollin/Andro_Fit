@@ -1,9 +1,5 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionDetail;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -50,28 +46,8 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         }
 
         long sessionId = (long) getIntent().getExtras().get(getString(R.string.session_intent_name));
-        Session currentSession = Session.findById(Session.class, sessionId);
-        this.presenter = new SessionDetailPresenter(this, currentSession);
-
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.BLACK);
-        paint.setTextAlign(Paint.Align.LEFT);
-
-        String text = currentSession.toString();
-        float baseline = -paint.ascent();
-        int width = (int) (paint.measureText(text) + 0.5f);
-        int height = (int) (baseline + paint.descent() + 0.5f);
-
-        Bitmap image = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-        Canvas canvas = new Canvas(image);
-        canvas.drawText(text, 0, baseline, paint);
-        SharePhoto photo = new SharePhoto.Builder()
-                .setBitmap(image)
-                .build();
-        SharePhotoContent content = new SharePhotoContent.Builder()
-                .addPhoto(photo)
-                .build();
-        this.sessionShareOnFacebookButton.setShareContent(content);
+        this.presenter = new SessionDetailPresenter(this, sessionId);
+        this.setFacebookButtonShareContent();
     }
 
     @Override
@@ -127,5 +103,13 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         this.finish();
     }
 
-
+    public void setFacebookButtonShareContent() {
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(this.presenter.getBitmapFromSession())
+                .build();
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .build();
+        this.sessionShareOnFacebookButton.setShareContent(content);
+    }
 }
