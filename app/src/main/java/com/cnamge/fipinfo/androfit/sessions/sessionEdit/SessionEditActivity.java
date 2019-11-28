@@ -75,18 +75,12 @@ public class SessionEditActivity extends AppCompatActivity implements SessionEdi
 
     @Override
     public void setupViewForEdition(Session session) {
-        if (session.getDescription().isEmpty() || session.getDescription() == null) {
-            this.descriptionEditText.setText(getString(R.string.optional));
-            this.descriptionEditText.setAlpha(0.6f);
-        }else{
+        if (!(session.getDescription().isEmpty() || session.getDescription() == null)) {
             this.descriptionEditText.setText(session.getDescription());
         }
     }
 
     @Override
-    public void setupViewForCreation() {
-        this.descriptionEditText.setText(getString(R.string.optional));
-        this.descriptionEditText.setAlpha(0.6f);
-    }
+    public void setupViewForCreation() {}
 
 }
