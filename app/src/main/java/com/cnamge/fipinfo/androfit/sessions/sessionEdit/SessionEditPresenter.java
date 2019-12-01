@@ -24,7 +24,7 @@ public class SessionEditPresenter {
 
     SessionEditPresenter(SessionEditInterface mInterface, long sessionId) {
         this.mInterface = mInterface;
-        this.currentSession = Session.find(Session.class, "id = ?","" + sessionId).get(0);
+        this.currentSession = Session.findById(Session.class, sessionId);
         this.currentEditContext = SessionEditContext.MODIFICATION;
         this.calendarInteractor = new CalendarInteractor(this.mInterface.getActivity());
         mInterface.setupViewForEdition(currentSession);
@@ -46,7 +46,7 @@ public class SessionEditPresenter {
         mInterface.cancel();
     }
 
-    void onRegisterButtonClicked(){
+    void onRegisterButtonClicked() {
         this.currentSession.save();
         mInterface.registerModification();
         Activity activity = this.mInterface.getActivity();

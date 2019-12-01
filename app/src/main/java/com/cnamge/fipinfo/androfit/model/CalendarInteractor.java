@@ -10,8 +10,9 @@ import android.provider.CalendarContract;
 
 public class CalendarInteractor {
     private static final String CALENDAR_ACCOUNT_NAME = "andro_fit";
-    private static final String CALENDAR_NAME         = "AndroFit Events";
-    private static final String EVENTS_TIMEZONE       = "Europe/Paris";
+    private static final String CALENDAR_NAME = "AndroFit Events";
+    private static final String EVENTS_TIMEZONE = "Europe/Paris";
+    private static final int REMINDERS_MINUTES = 60;
 
     private long calendarId;
     private Activity activity;
@@ -25,7 +26,7 @@ public class CalendarInteractor {
         long eventId = session.getCalendarEventId();
 
         if (this.activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED
-        || this.getCalendarId() == -1 || eventId == -1) {
+            || this.getCalendarId() == -1 || eventId == -1) {
             return;
         }
 
@@ -84,7 +85,6 @@ public class CalendarInteractor {
         values.put(CalendarContract.Events.EVENT_TIMEZONE, EVENTS_TIMEZONE);
         values.put(CalendarContract.Events.ACCESS_LEVEL, CalendarContract.Events.ACCESS_PUBLIC);
         values.put(CalendarContract.Events.SELF_ATTENDEE_STATUS, CalendarContract.Events.STATUS_CONFIRMED);
-        values.put(CalendarContract.Events.ALL_DAY, 2);
         values.put(CalendarContract.Events.GUESTS_CAN_INVITE_OTHERS, 1);
         values.put(CalendarContract.Events.GUESTS_CAN_MODIFY, 1);
         values.put(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
@@ -93,8 +93,10 @@ public class CalendarInteractor {
         if (uri == null || uri.getLastPathSegment() == null) {
             return -1;
         }
+        long eventId = Long.valueOf(uri.getLastPathSegment());
+        this.createEventReminder(eventId);
 
-        return Long.valueOf(uri.getLastPathSegment());
+        return eventId;
     }
 
     private void updateEvent(Session session, long eventId) {
@@ -108,7 +110,6 @@ public class CalendarInteractor {
         values.put(CalendarContract.Events.EVENT_LOCATION, session.getLocation());
         values.put(CalendarContract.Events.DTSTART, session.getBeginDate());
         values.put(CalendarContract.Events.DTEND, session.getEndDate());
-        values.put(CalendarContract.Events.CALENDAR_ID, this.getCalendarId());
         values.put(CalendarContract.Events.DESCRIPTION, session.getDescription());
 
         this.activity.getContentResolver().update(
@@ -157,7 +158,6 @@ public class CalendarInteractor {
             Uri.Builder builder = CalendarContract.Calendars.CONTENT_URI.buildUpon();
             builder.appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, CalendarInteractor.CALENDAR_ACCOUNT_NAME);
             builder.appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL);
-            builder.appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "false");
             Uri uri = this.activity.getContentResolver().insert(builder.build(), values);
             if (uri != null && uri.getLastPathSegment() != null) {
                 calendarId = Long.parseLong(uri.getLastPathSegment());
@@ -165,5 +165,17 @@ public class CalendarInteractor {
         }
         this.calendarId = calendarId;
         return this.calendarId;
+    }
+
+    private void createEventReminder(long eventId) {
+        if (this.activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(CalendarContract.Reminders.MINUTES, REMINDERS_MINUTES);
+        values.put(CalendarContract.Reminders.EVENT_ID, eventId);
+        values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
+        this.activity.getContentResolver().insert(CalendarContract.Reminders.CONTENT_URI, values);
     }
 }
