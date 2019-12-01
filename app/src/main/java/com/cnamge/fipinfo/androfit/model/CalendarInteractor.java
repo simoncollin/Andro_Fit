@@ -11,6 +11,7 @@ import android.provider.CalendarContract;
 public class CalendarInteractor {
     private static final String CALENDAR_ACCOUNT_NAME = "andro_fit";
     private static final String CALENDAR_NAME         = "AndroFit Events";
+    private static final String EVENTS_TIMEZONE       = "Europe/Paris";
 
     private long calendarId;
     private Activity activity;
@@ -30,8 +31,8 @@ public class CalendarInteractor {
 
         this.activity.getContentResolver().delete(
             CalendarContract.Events.CONTENT_URI,
-            CalendarContract.Events._ID + " = ? AND " + CalendarContract.Calendars._ID + " = ? ",
-            new String[]{Long.toString(eventId), Long.toString(this.getCalendarId())}
+            CalendarContract.Events._ID + " = ? ",
+            new String[]{Long.toString(eventId)}
         );
     }
 
@@ -61,7 +62,7 @@ public class CalendarInteractor {
             if (cursor != null && cursor.moveToFirst()) {
                 eventId = cursor.getLong(0);
                 cursor.close();
-                this.updateEventId(session, eventId);
+                this.updateEvent(session, eventId);
             }
         }
         session.setCalendarEventId(eventId);
@@ -80,8 +81,7 @@ public class CalendarInteractor {
         values.put(CalendarContract.Events.DTSTART, session.getBeginDate());
         values.put(CalendarContract.Events.DTEND, session.getEndDate());
         values.put(CalendarContract.Events.DESCRIPTION, session.getDescription());
-        values.put(CalendarContract.Events.RRULE, "FREQ=DAILY;COUNT=20;BYDAY=MO,TU,WE,TH,FR;WKST=MO");
-        values.put(CalendarContract.Events.EVENT_TIMEZONE, "Europe/Paris");
+        values.put(CalendarContract.Events.EVENT_TIMEZONE, EVENTS_TIMEZONE);
         values.put(CalendarContract.Events.ACCESS_LEVEL, CalendarContract.Events.ACCESS_PUBLIC);
         values.put(CalendarContract.Events.SELF_ATTENDEE_STATUS, CalendarContract.Events.STATUS_CONFIRMED);
         values.put(CalendarContract.Events.ALL_DAY, 2);
@@ -97,7 +97,7 @@ public class CalendarInteractor {
         return Long.valueOf(uri.getLastPathSegment());
     }
 
-    private void updateEventId(Session session, long eventId) {
+    private void updateEvent(Session session, long eventId) {
         if (this.activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED
             || eventId == -1) {
             return;
@@ -114,8 +114,8 @@ public class CalendarInteractor {
         this.activity.getContentResolver().update(
             CalendarContract.Events.CONTENT_URI,
             values,
-            CalendarContract.Events._ID + " = ? AND " + CalendarContract.Calendars._ID + " = ? ",
-            new String[]{Long.toString(eventId), Long.toString(this.getCalendarId())}
+            CalendarContract.Events._ID + " = ? ",
+            new String[]{Long.toString(eventId)}
         );
     }
 
@@ -157,7 +157,7 @@ public class CalendarInteractor {
             Uri.Builder builder = CalendarContract.Calendars.CONTENT_URI.buildUpon();
             builder.appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, CalendarInteractor.CALENDAR_ACCOUNT_NAME);
             builder.appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL);
-            builder.appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true");
+            builder.appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "false");
             Uri uri = this.activity.getContentResolver().insert(builder.build(), values);
             if (uri != null && uri.getLastPathSegment() != null) {
                 calendarId = Long.parseLong(uri.getLastPathSegment());

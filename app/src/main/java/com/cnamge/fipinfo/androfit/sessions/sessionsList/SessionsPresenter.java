@@ -58,16 +58,6 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
 
     public void onDeleteButtonClicked(int position){
         this.toDeleteSession = sessions.get(position);
-        sessionsInterface.showMessage(this.toDeleteSession.getName() + context.getResources().getString(R.string.sessions_deleted));
-
-        this.toDeleteSession.delete(); // Delete from DB
-        this.sessions = getAllSessions(); // Refresh presenter sessions list
-
-        // Notify adapter that item has been removed
-        adapter.getItems().remove(position);
-        adapter.notifyItemRemoved(position);
-        adapter.notifyItemRangeChanged(position, adapter.getItemCount());
-
         Activity activity = this.sessionsInterface.getActivity();
         if (activity.checkSelfPermission(Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED
             && activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
@@ -75,6 +65,16 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
         } else {
             this.deleteCalendarEvent();
         }
+
+        this.toDeleteSession.delete(); // Delete from DB
+        sessionsInterface.showMessage(this.toDeleteSession.getName() + context.getResources().getString(R.string.sessions_deleted));
+
+        this.sessions = getAllSessions(); // Refresh presenter sessions list
+
+        // Notify adapter that item has been removed
+        adapter.getItems().remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, adapter.getItemCount());
     }
 
     // TODO: remove if not used

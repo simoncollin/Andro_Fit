@@ -68,12 +68,13 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
 
         //FOR TEST ONLY
-
+        /*
         try {
             this.purgeAndReplaceFixtures();
         } catch (Exception e) {
             e.printStackTrace();
         }
+         */
     }
 
     private void setupBottomBar() {
@@ -172,17 +173,18 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             }
 
             (new Session(
-                    "Session number " + i,
-                    "location " + i,
-                    System.currentTimeMillis() + (i * 6000),
-                    System.currentTimeMillis() + (i * 6000000),
-                    desc
+                "Session number " + i,
+                "location " + i,
+                System.currentTimeMillis() + (i * 6000),
+                System.currentTimeMillis() + (i * 6000000),
+                desc,
+                -1
             )).save();
             (new Meal(
-                    "Meal number " + i,
-                    System.currentTimeMillis(),
-                    desc,
-                    "image " + i
+                "Meal number " + i,
+                System.currentTimeMillis(),
+                desc,
+                "image " + i
             )).save();
         }
 
