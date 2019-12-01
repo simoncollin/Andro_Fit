@@ -10,9 +10,9 @@ import android.provider.CalendarContract;
 
 public class CalendarInteractor {
     private static final String CALENDAR_ACCOUNT_NAME = "andro_fit";
-    private static final String CALENDAR_NAME = "AndroFit Events";
-    private static final String EVENTS_TIMEZONE = "Europe/Paris";
-    private static final int REMINDERS_MINUTES = 60;
+    private static final String CALENDAR_NAME         = "AndroFit Events";
+    private static final String EVENTS_TIMEZONE       = "Europe/Paris";
+    private static final int REMINDERS_MINUTES        = 60;
 
     private long calendarId;
     private Activity activity;
@@ -158,6 +158,7 @@ public class CalendarInteractor {
             Uri.Builder builder = CalendarContract.Calendars.CONTENT_URI.buildUpon();
             builder.appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, CalendarInteractor.CALENDAR_ACCOUNT_NAME);
             builder.appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL);
+            builder.appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true");
             Uri uri = this.activity.getContentResolver().insert(builder.build(), values);
             if (uri != null && uri.getLastPathSegment() != null) {
                 calendarId = Long.parseLong(uri.getLastPathSegment());

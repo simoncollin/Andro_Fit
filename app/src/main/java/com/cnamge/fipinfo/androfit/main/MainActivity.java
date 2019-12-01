@@ -68,13 +68,13 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
 
         //FOR TEST ONLY
-        /*
+
         try {
             this.purgeAndReplaceFixtures();
         } catch (Exception e) {
             e.printStackTrace();
         }
-         */
+
     }
 
     private void setupBottomBar() {
