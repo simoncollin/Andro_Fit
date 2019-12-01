@@ -1,5 +1,7 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionEdit;
 
+import android.app.Activity;
+
 import com.cnamge.fipinfo.androfit.model.Session;
 
 public interface SessionEditInterface {
@@ -10,4 +12,6 @@ public interface SessionEditInterface {
 
     void setupViewForEdition(Session session);
     void setupViewForCreation();
+
+    Activity getActivity();
 }

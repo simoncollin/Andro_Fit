@@ -1,6 +1,7 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionsList;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -109,4 +110,17 @@ public class SessionsFragment extends Fragment implements SessionsInterface {
         startActivity(intent);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length == 0 || grantResults[0] == PackageManager.PERMISSION_DENIED) {
+            if (requestCode == 1) {
+                Toast.makeText(this.getContext(), "You must accept agenda permissions to synchronize your sessions in your agenda", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            if (requestCode == 1) {
+                this.presenter.deleteCalendarEvent();
+            }
+        }
+    }
 }
