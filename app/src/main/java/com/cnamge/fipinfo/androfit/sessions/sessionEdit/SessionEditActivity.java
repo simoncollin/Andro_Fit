@@ -1,5 +1,7 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionEdit;
 
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -7,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
@@ -83,4 +86,22 @@ public class SessionEditActivity extends AppCompatActivity implements SessionEdi
     @Override
     public void setupViewForCreation() {}
 
+    @Override
+    public Activity getActivity() {
+        return this;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length == 0 || grantResults[0] == PackageManager.PERMISSION_DENIED) {
+            if (requestCode == 1) {
+                Toast.makeText(getApplicationContext(), "You must accept agenda permissions to synchronize your sessions in your agenda", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            if (requestCode == 1) {
+                this.presenter.saveCalendarEvent();
+            }
+        }
+    }
 }
