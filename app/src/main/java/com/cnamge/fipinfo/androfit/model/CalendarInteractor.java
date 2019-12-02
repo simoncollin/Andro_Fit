@@ -25,8 +25,7 @@ public class CalendarInteractor {
     public void deleteCalendarEvent(Session session) {
         long eventId = session.getCalendarEventId();
 
-        if (this.activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED
-            || this.getCalendarId() == -1 || eventId == -1) {
+        if (eventId == -1 || this.activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
 
@@ -38,11 +37,8 @@ public class CalendarInteractor {
     }
 
     public void saveCalendarEvent(Session session) {
-        if (this.getCalendarId() == -1) {
-            return;
-        }
+        long eventId;
 
-        long eventId = -1;
         if (session.getCalendarEventId() == -1) {
             eventId = this.createEvent(session);
             if (eventId == -1) {
@@ -53,17 +49,25 @@ public class CalendarInteractor {
                 return;
             }
 
+            eventId = session.getCalendarEventId();
+
             Cursor cursor = this.activity.getContentResolver().query(
                 CalendarContract.Events.CONTENT_URI,
                 new String[]{CalendarContract.Events._ID},
                 CalendarContract.Events._ID + " = ? ",
-                new String[]{Long.toString(session.getCalendarEventId())},
+                new String[]{Long.toString(eventId)},
                 null
             );
-            if (cursor != null && cursor.moveToFirst()) {
-                eventId = cursor.getLong(0);
+            if (cursor != null) {
                 cursor.close();
-                this.updateEvent(session, eventId);
+                if (cursor.moveToFirst()) {
+                    this.updateEvent(session, eventId);
+                } else {
+                    eventId = this.createEvent(session);
+                    if (eventId == -1) {
+                        return;
+                    }
+                }
             }
         }
         session.setCalendarEventId(eventId);
@@ -71,12 +75,14 @@ public class CalendarInteractor {
     }
 
     private long createEvent(Session session) {
-        if (this.activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+        long calendarId = this.getCalendarId();
+
+        if (calendarId == -1 || this.activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
             return -1;
         }
 
         ContentValues values = new ContentValues();
-        values.put(CalendarContract.Events.CALENDAR_ID, this.getCalendarId());
+        values.put(CalendarContract.Events.CALENDAR_ID, calendarId);
         values.put(CalendarContract.Events.TITLE, session.getName());
         values.put(CalendarContract.Events.EVENT_LOCATION, session.getLocation());
         values.put(CalendarContract.Events.DTSTART, session.getBeginDate());
@@ -143,10 +149,13 @@ public class CalendarInteractor {
         );
 
         long calendarId = -1;
-        if (cursor != null && cursor.moveToFirst()) {
-            calendarId = cursor.getLong(0);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                calendarId = cursor.getLong(0);
+            }
             cursor.close();
-        } else {
+        }
+        if (calendarId != -1) {
             ContentValues values = new ContentValues();
             values.put(CalendarContract.Calendars.ACCOUNT_NAME, CALENDAR_ACCOUNT_NAME);
             values.put(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL);
