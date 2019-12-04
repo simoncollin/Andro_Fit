@@ -59,15 +59,16 @@ public class CalendarInteractor {
                 null
             );
             if (cursor != null) {
-                cursor.close();
                 if (cursor.moveToFirst()) {
                     this.updateEvent(session, eventId);
                 } else {
                     eventId = this.createEvent(session);
                     if (eventId == -1) {
+                        cursor.close();
                         return;
                     }
                 }
+                cursor.close();
             }
         }
         session.setCalendarEventId(eventId);

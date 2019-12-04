@@ -41,7 +41,6 @@ class SessionEditPresenter {
 
     SessionEditPresenter(SessionEditInterface mInterface, Context context, long sessionId) {
         this.mInterface = mInterface;
-        this.currentSession = Session.find(Session.class, "id = ?","" + sessionId).get(0);
         this.context = context;
         this.currentSession = Session.findById(Session.class, sessionId);
         this.calendarInteractor = new CalendarInteractor(this.mInterface.getActivity());
