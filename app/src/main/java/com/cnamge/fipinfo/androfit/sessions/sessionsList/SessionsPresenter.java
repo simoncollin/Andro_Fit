@@ -56,10 +56,7 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
     void onEditButtonClicked(int position){
         sessionsInterface.goToEditActivity(sessions.get(position));
     }
-
-    void onDeleteButtonClicked(int position){
-        Session sessionDeleted = sessions.get(position);
-        sessionsInterface.showMessage(sessionDeleted.getName() + context.getResources().getString(R.string.sessions_deleted));
+    
     public void onDeleteButtonClicked(int position){
         this.toDeleteSession = sessions.get(position);
         Activity activity = this.sessionsInterface.getActivity();

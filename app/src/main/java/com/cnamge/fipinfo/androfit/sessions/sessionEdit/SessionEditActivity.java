@@ -1,9 +1,9 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionEdit;
 
-import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -249,7 +249,8 @@ public class SessionEditActivity extends AppCompatActivity implements SessionEdi
         this.locationEditText.setTextColor(getColor(R.color.red));
         this.locationTextView.setTextColor(getColor(R.color.red));
         this.locationEditText.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.red)));
-      
+    }
+
     public Activity getActivity() {
         return this;
     }

@@ -1,14 +1,13 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionEdit;
 
-import android.content.Context;
-
-import com.cnamge.fipinfo.androfit.R;
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 
 import androidx.core.app.ActivityCompat;
 
+import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.CalendarInteractor;
 import com.cnamge.fipinfo.androfit.model.Session;
 
@@ -33,7 +32,6 @@ class SessionEditPresenter {
     private int currentMonth = 0;
     private int currentDay = 0;
 
-    private SessionEditContext currentEditContext;
     private CalendarInteractor calendarInteractor;
 
     private boolean dateHaveError = false;
@@ -46,7 +44,6 @@ class SessionEditPresenter {
         this.currentSession = Session.find(Session.class, "id = ?","" + sessionId).get(0);
         this.context = context;
         this.currentSession = Session.findById(Session.class, sessionId);
-        this.currentEditContext = SessionEditContext.MODIFICATION;
         this.calendarInteractor = new CalendarInteractor(this.mInterface.getActivity());
         mInterface.setupViewForEdition(currentSession);
     }
@@ -55,10 +52,7 @@ class SessionEditPresenter {
         this.mInterface = mInterface;
         this.context = context;
         this.currentSession = new Session();
-
-        this.currentEditContext = SessionEditContext.CREATION;
         this.calendarInteractor = new CalendarInteractor(this.mInterface.getActivity());
-        mInterface.setupViewForCreation();
     }
 
     void onDestroy() {
@@ -67,16 +61,6 @@ class SessionEditPresenter {
 
     void onCancelButtonClicked(){
         mInterface.cancel();
-    }
-
-
-    void onRegisterButtonClicked(){
-        if (!formHaveError()){
-            this.currentSession.save();
-            mInterface.registerModification();
-        }else {
-            mInterface.showMessage(context.getString(R.string.form_error_message));
-        }
     }
 
     private boolean formHaveError(){
@@ -153,12 +137,14 @@ class SessionEditPresenter {
         }
     }
 
-    void onTitleEdited(String text){
+    void onTitleEdited(String text) {
         try {
             currentSession.setName(text);
-        }catch (Exception e){
+        } catch (Exception e) {
             mInterface.showErrorOnTitle(e.getMessage());
         }
+    }
+
     void onRegisterButtonClicked() {
         this.currentSession.save();
         mInterface.registerModification();

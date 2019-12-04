@@ -16,6 +16,5 @@ public interface SessionEditInterface {
     void showErrorOnDate(String message);
     void showErrorOnTitle(String message);
     void showErrorOnLocation(String message);
-    void setupViewForCreation();
     Activity getActivity();
 }

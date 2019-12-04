@@ -170,13 +170,11 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             } else {
                 desc = "";
             }
-            (new Session(
-                "Session number " + i,
-                "location " + i,
-                System.currentTimeMillis() + (i * 6000),
-                System.currentTimeMillis() + (i * 6000000),
-                desc,
-                -1
+            (new Meal(
+                    "Meal number " + i,
+                    System.currentTimeMillis() + (i * 6000),
+                    desc,
+                    "Meal url " + i
             )).save();
         }
 
