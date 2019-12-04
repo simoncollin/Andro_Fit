@@ -16,6 +16,7 @@
     <string name="location_label">Location</string>
     <string name="begin_date_label">Beginning Date</string>
     <string name="end_date_label">End Date</string>
+    <string name="duration_label">Duration</string>
     <string name="description_label">Description</string>
 
     <string name="session_intent_name">SESSION_INTENT</string>

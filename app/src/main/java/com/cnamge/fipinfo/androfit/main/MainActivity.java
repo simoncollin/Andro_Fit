@@ -26,7 +26,8 @@ import com.orm.SugarRecord;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainInterface{
+
+public class MainActivity extends AppCompatActivity implements MainInterface {
 
     // Views objects
     private FloatingActionButton bottomBarButton;
@@ -65,15 +66,18 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
 
         this.setupBottomBar();
 
+
         //FOR TEST ONLY
+
         try {
             this.purgeAndReplaceFixtures();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
-    private void setupBottomBar(){
+    private void setupBottomBar() {
         this.bottomBarButton = findViewById(R.id.bottom_bar_button);
         this.sessionsButton = findViewById(R.id.bottom_bar_sessions_button);
         this.mealsButton = findViewById(R.id.bottom_bar_meals_button);
@@ -111,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
     }
 
     @Override
-    public void selectView(View view){
+    public void selectView(View view) {
         if (view != null) {
             this.sessionsButton.setAlpha(0.5f);
             this.mealsButton.setAlpha(0.5f);
@@ -149,29 +153,30 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         startActivity(intent);
     }
 
-    private void showFragment(Fragment fragment){
+    private void showFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
     }
-    
+
     // TODO: Remove after devs
     protected void purgeAndReplaceFixtures(){
         SugarRecord.deleteAll(Meal.class);
 
         for (int i = 1; i <= 10; i++) {
             String desc;
-            if (i%2 == 0){
+            if (i % 2 == 0) {
                 desc = "description " + i;
-            }else {
+            } else {
                 desc = "";
             }
-
-            (new Meal(
-                "Meal number " + i,
-                System.currentTimeMillis(),
+            (new Session(
+                "Session number " + i,
+                "location " + i,
+                System.currentTimeMillis() + (i * 6000),
+                System.currentTimeMillis() + (i * 6000000),
                 desc,
-                "image " + i
+                -1
             )).save();
         }
 
@@ -188,8 +193,8 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         Log.v("purgeAndReplaceFixtures", "First session: " + firstSession);
         Log.v("purgeAndReplaceFixtures", "First meal: " + firstMeal);
 
-        Session lastSession = sessions.get(sessions.size()-1);
-        Meal lastMeal = meals.get(meals.size()-1);
+        Session lastSession = sessions.get(sessions.size() - 1);
+        Meal lastMeal = meals.get(meals.size() - 1);
         Log.v("purgeAndReplaceFixtures", "Last session: " + lastSession);
         Log.v("purgeAndReplaceFixtures", "Last meal: " + lastMeal);
     }

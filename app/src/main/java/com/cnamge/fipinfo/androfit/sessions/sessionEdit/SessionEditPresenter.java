@@ -3,6 +3,13 @@ package com.cnamge.fipinfo.androfit.sessions.sessionEdit;
 import android.content.Context;
 
 import com.cnamge.fipinfo.androfit.R;
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+
+import androidx.core.app.ActivityCompat;
+
+import com.cnamge.fipinfo.androfit.model.CalendarInteractor;
 import com.cnamge.fipinfo.androfit.model.Session;
 
 import java.text.SimpleDateFormat;
@@ -26,6 +33,9 @@ class SessionEditPresenter {
     private int currentMonth = 0;
     private int currentDay = 0;
 
+    private SessionEditContext currentEditContext;
+    private CalendarInteractor calendarInteractor;
+
     private boolean dateHaveError = false;
     private boolean locationHaveError = false;
     private boolean titleHaveError = false;
@@ -35,6 +45,9 @@ class SessionEditPresenter {
         this.mInterface = mInterface;
         this.currentSession = Session.find(Session.class, "id = ?","" + sessionId).get(0);
         this.context = context;
+        this.currentSession = Session.findById(Session.class, sessionId);
+        this.currentEditContext = SessionEditContext.MODIFICATION;
+        this.calendarInteractor = new CalendarInteractor(this.mInterface.getActivity());
         mInterface.setupViewForEdition(currentSession);
     }
 
@@ -42,6 +55,10 @@ class SessionEditPresenter {
         this.mInterface = mInterface;
         this.context = context;
         this.currentSession = new Session();
+
+        this.currentEditContext = SessionEditContext.CREATION;
+        this.calendarInteractor = new CalendarInteractor(this.mInterface.getActivity());
+        mInterface.setupViewForCreation();
     }
 
     void onDestroy() {
@@ -51,6 +68,7 @@ class SessionEditPresenter {
     void onCancelButtonClicked(){
         mInterface.cancel();
     }
+
 
     void onRegisterButtonClicked(){
         if (!formHaveError()){
@@ -141,5 +159,19 @@ class SessionEditPresenter {
         }catch (Exception e){
             mInterface.showErrorOnTitle(e.getMessage());
         }
+    void onRegisterButtonClicked() {
+        this.currentSession.save();
+        mInterface.registerModification();
+        Activity activity = this.mInterface.getActivity();
+        if (activity.checkSelfPermission(Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED
+            && activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR}, 1);
+        } else {
+            this.saveCalendarEvent();
+        }
+    }
+
+    void saveCalendarEvent() {
+        this.calendarInteractor.saveCalendarEvent(this.currentSession);
     }
 }
