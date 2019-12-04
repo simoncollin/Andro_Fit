@@ -7,18 +7,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
 import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
-
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
-import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
 
 
 public class SessionDetailActivity extends AppCompatActivity implements SessionDetailInterface {
@@ -61,6 +58,12 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
     protected void onDestroy() {
         presenter.onDestroy();
         super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.onResume();
     }
 
     private void linkActivityToXml(){
@@ -123,10 +126,5 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
                         .build()
                 ).build();
         this.sessionShareOnFacebookButton.setShareContent(content);
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        presenter.onActivityResult();
     }
 }

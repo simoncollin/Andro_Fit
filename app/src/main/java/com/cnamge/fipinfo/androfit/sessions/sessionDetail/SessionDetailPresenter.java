@@ -72,7 +72,7 @@ class SessionDetailPresenter {
         return image;
     }
 
-    void onActivityResult() {
+    void onResume() {
         this.detailledSession = Session.findById(Session.class, this.detailledSession.getId());
         sessionIDetailInterface.setupView(this.detailledSession);
     }
