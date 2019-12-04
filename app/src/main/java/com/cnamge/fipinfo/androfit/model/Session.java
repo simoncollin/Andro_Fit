@@ -1,9 +1,12 @@
 package com.cnamge.fipinfo.androfit.model;
 
+import androidx.annotation.NonNull;
+
 import com.orm.SugarRecord;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Session extends SugarRecord<Session> {
     private String name;
@@ -68,6 +71,8 @@ public class Session extends SugarRecord<Session> {
         this.description = description;
     }
 
+
+    @NonNull
     public long getCalendarEventId() {
         return calendarEventId;
     }
@@ -90,20 +95,25 @@ public class Session extends SugarRecord<Session> {
 
     public String getBeginDateString(){
         Date date = new Date(this.beginDate);
-        SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/YYYY", Locale.FRANCE);
         return df2.format(date); // Format 09/10/2019
     }
 
     public String getBeginDateHourString(){
         Date date = new Date(this.beginDate);
-        SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/YYYY - hh:mm");
+        SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/YYYY - HH:mm", Locale.FRANCE);
+        return df2.format(date); // Format 09/10/2019
+    }
+
+    public String getEndDateHourString(){
+        Date date = new Date(this.endDate);
+        SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/YYYY - HH:mm", Locale.FRANCE);
         return df2.format(date); // Format 09/10/2019
     }
 
     public String getDurationString(){
         long diff = this.endDate - this.beginDate;
-        SimpleDateFormat df2 = new SimpleDateFormat("hh:mm");
-        String res = df2.format(diff) + "h"; // Format 01:00
-        return res;
+        SimpleDateFormat df2 = new SimpleDateFormat("HH:mm", Locale.FRANCE);
+        return df2.format(diff) + "h"; // Format 01:00
     }
 }

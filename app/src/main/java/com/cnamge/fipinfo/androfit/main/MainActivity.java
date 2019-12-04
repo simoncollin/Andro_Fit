@@ -160,8 +160,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     }
 
     // TODO: Remove after devs
-    protected void purgeAndReplaceFixtures() throws Exception {
-        SugarRecord.deleteAll(Session.class);
+    protected void purgeAndReplaceFixtures(){
         SugarRecord.deleteAll(Meal.class);
 
         for (int i = 1; i <= 10; i++) {
@@ -171,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             } else {
                 desc = "";
             }
-
             (new Session(
                 "Session number " + i,
                 "location " + i,
@@ -179,12 +177,6 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                 System.currentTimeMillis() + (i * 6000000),
                 desc,
                 -1
-            )).save();
-            (new Meal(
-                "Meal number " + i,
-                System.currentTimeMillis(),
-                desc,
-                "image " + i
             )).save();
         }
 

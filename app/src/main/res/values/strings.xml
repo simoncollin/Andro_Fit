@@ -37,4 +37,6 @@
     <string name="delete">Delete</string>
     <string name="optional">Optional*</string>
     <string name="required">Required*</string>
+    <string name="form_error_message">Form is incorrect</string>
+
 </resources>

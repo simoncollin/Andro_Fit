@@ -11,7 +11,7 @@ import android.graphics.drawable.Drawable;
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
 
-public class SessionDetailPresenter {
+class SessionDetailPresenter {
 
     private SessionDetailInterface sessionIDetailInterface;
     private Session detailledSession;
@@ -70,5 +70,10 @@ public class SessionDetailPresenter {
         }
 
         return image;
+    }
+
+    void onActivityResult() {
+        this.detailledSession = Session.findById(Session.class, this.detailledSession.getId());
+        sessionIDetailInterface.setupView(this.detailledSession);
     }
 }

@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
@@ -85,7 +86,7 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         this.sessionDate.setText(session.getBeginDateHourString());
         this.sessionDuration.setText(session.getDurationString());
 
-        if (session.getDescription().isEmpty() || session.getDescription() == null) {
+        if ( session.getDescription() == null || session.getDescription().isEmpty()) {
             this.sessionDescriptionContent.setAlpha(0f);
             this.sessionDescriptionLabel.setAlpha(0f);
         }else{
@@ -122,5 +123,10 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
                         .build()
                 ).build();
         this.sessionShareOnFacebookButton.setShareContent(content);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        presenter.onActivityResult();
     }
 }
