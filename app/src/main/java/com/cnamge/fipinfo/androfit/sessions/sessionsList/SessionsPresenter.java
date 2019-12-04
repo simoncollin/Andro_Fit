@@ -27,6 +27,7 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
 
     void onResume() {
         if (sessionsInterface != null) {
+            this.sessions = getAllSessions();
             sessionsInterface.setItems(sessions);
         }
     }
@@ -42,11 +43,11 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
         }
     }
 
-    public void onEditButtonClicked(int position){
+    void onEditButtonClicked(int position){
         sessionsInterface.goToEditActivity(sessions.get(position));
     }
 
-    public void onDeleteButtonClicked(int position){
+    void onDeleteButtonClicked(int position){
         Session sessionDeleted = sessions.get(position);
         sessionsInterface.showMessage(sessionDeleted.getName() + context.getResources().getString(R.string.sessions_deleted));
 
@@ -57,11 +58,6 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
         adapter.getItems().remove(position);
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, adapter.getItemCount());
-    }
-
-    // TODO: remove if not used
-    public SessionsInterface getViewInterface() {
-        return sessionsInterface;
     }
 
     private List<Session> getAllSessions() {

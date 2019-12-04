@@ -2,7 +2,7 @@ package com.cnamge.fipinfo.androfit.sessions.sessionDetail;
 
 import com.cnamge.fipinfo.androfit.model.Session;
 
-public class SessionDetailPresenter {
+class SessionDetailPresenter {
 
     private SessionDetailInterface sessionIDetailInterface;
     private Session detailledSession;
@@ -28,5 +28,10 @@ public class SessionDetailPresenter {
 
     void onEditButtonClicked(){
         sessionIDetailInterface.goToEditActivity(this.detailledSession);
+    }
+
+    void onActivityResult() {
+        this.detailledSession = Session.findById(Session.class, this.detailledSession.getId());
+        sessionIDetailInterface.setupView(this.detailledSession);
     }
 }

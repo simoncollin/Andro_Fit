@@ -127,7 +127,7 @@
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/session_edit_title_label"
-        android:importantForAutofill="no"/>
+        android:autofillHints="Session title" />
 
     <TextView
         android:id="@+id/session_edit_location_label"
@@ -173,7 +173,7 @@
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/session_edit_beginning_date_label"
-        android:importantForAutofill="no"/>
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/session_edit_end_date_content"

@@ -9,5 +9,12 @@ public interface SessionEditInterface {
     void cancel();
 
     void setupViewForEdition(Session session);
-    void setupViewForCreation();
+    void showDatePicker(String title);
+    void showTimePicker(String title);
+
+    void refreshDateEditText(String beginningDateStr, String endDateStr);
+
+    void showErrorOnDate(String message);
+    void showErrorOnTitle(String message);
+    void showErrorOnLocation(String message);
 }
