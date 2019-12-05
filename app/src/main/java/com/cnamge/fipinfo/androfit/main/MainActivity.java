@@ -66,18 +66,15 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
         this.setupBottomBar();
 
-
         //FOR TEST ONLY
-
         try {
             this.purgeAndReplaceFixtures();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    private void setupBottomBar() {
+    private void setupBottomBar(){
         this.bottomBarButton = findViewById(R.id.bottom_bar_button);
         this.sessionsButton = findViewById(R.id.bottom_bar_sessions_button);
         this.mealsButton = findViewById(R.id.bottom_bar_meals_button);
@@ -115,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     }
 
     @Override
-    public void selectView(View view) {
+    public void selectView(View view){
         if (view != null) {
             this.sessionsButton.setAlpha(0.5f);
             this.mealsButton.setAlpha(0.5f);
@@ -153,12 +150,12 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         startActivity(intent);
     }
 
-    private void showFragment(Fragment fragment) {
+    private void showFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
     }
-
+    
     // TODO: Remove after devs
     protected void purgeAndReplaceFixtures(){
         SugarRecord.deleteAll(Meal.class);
@@ -177,7 +174,6 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                     "Meal url " + i
             )).save();
         }
-
 
         List<Session> sessions = SugarRecord.listAll(Session.class);
         List<Meal> meals = SugarRecord.listAll(Meal.class);

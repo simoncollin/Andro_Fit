@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Andro\'Fit</string>
+    <string name="title_friends">Amis</string>
+    <string name="title_dashboard">Tableau de Bord</string>
+    <string name="langue">Langue :</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_meals">Repas</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_sessions">Séances</string>
+    <string name="title_settings">Options</string>
+    <string name="desc_androfit">FRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCH</string>
+    <string name="credits">A propos</string>
+</resources>

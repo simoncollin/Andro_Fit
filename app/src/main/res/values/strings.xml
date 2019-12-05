@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Andro\'Fit</string>
+    <string name="title_sessions">Séances</string>
+    <string name="title_meals">Repas</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_settings">Options</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
     <!-- App bar right text title -->
     <string name="title_sessions">My sessions</string>
@@ -25,6 +32,15 @@
     <string name="session_intent_context_add">SESSION_ADD_INTENT</string>
 
     <!-- Content Description String -->
+    <string name="cd_sessions" translatable="false">My sport sessions button</string>
+    <string name="cd_meals" translatable="false">My meals button</string>
+    <string name="cd_friends" translatable="false">My friends button</string>
+    <string name="cd_settings" translatable="false">Settings button</string>
+
+
+    <string name="desc_androfit">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="credits">Credits</string>
+    <string name="langue">Language :</string>
     <string name="cd_sessions">My sport sessions button</string>
     <string name="cd_meals">My meals button</string>
     <string name="cd_friends">My friends button</string>
