@@ -23,12 +23,12 @@ public class SettingsFragment extends Fragment {
         DropdownTextView dropdown = new DropdownTextView.Builder(this.getContext())
                 .setTitleTextRes(R.string.credits)
                 .setContentTextRes(R.string.desc_androfit)
+                .setTitleTextSizeRes(R.dimen.dropdown_title)
+                .setContentTextSizeRes(R.dimen.dropdown_content)
                 .build();
 
         LinearLayout layout = baseView.findViewById(R.id.settings_linear_layout);
         layout.addView(dropdown);
-
-
         return baseView;
     }
 }
