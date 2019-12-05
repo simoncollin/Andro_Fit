@@ -9,6 +9,23 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_sessions">Séances</string>
     <string name="title_settings">Options</string>
-    <string name="desc_androfit">FRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCHFRENCH</string>
-    <string name="credits">A propos</string>
+    <string name="desc_androfit">© 2020 Andro\'Fit - CNAM GRAND-EST\n\nÉquipe Android :\nDESVIGNES MATTHIEU - LEGER ALIX - COLLIN SIMON - AYAD MOHAMMED-YACINE</string>
+    <string name="credits">À propos</string>
+    <string name="begin_date_label">Date de début</string>
+    <string name="cancel_button_label">Annuler</string>
+    <string name="delete">Supprimer</string>
+    <string name="description_label">Description</string>
+    <string name="duration_label">Durée</string>
+    <string name="edit">Modifier</string>
+    <string name="end_date_label">Date de fin</string>
+    <string name="location_label">Lieu</string>
+    <string name="optional">Optionnel</string>
+    <string name="required">Obligatoire*</string>
+    <string name="save_button_label">Enregistrer</string>
+    <string name="sessions_deleted">: séance supprimée</string>
+    <string name="title_label">Titre</string>
+    <string name="form_error_message">Erreur dans le formulaire</string>
+    <string name="title_session_add">Ajouter une séance</string>
+    <string name="title_session_detail">Détail de la séance</string>
+    <string name="title_session_edit">Modifier la séance</string>
 </resources>
