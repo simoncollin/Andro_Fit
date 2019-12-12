@@ -65,10 +65,10 @@ public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.Sessio
 
         SessionsViewHolder(View session_item_view) {
             super(session_item_view);
-            this.sName = session_item_view.findViewById(R.id.meal_name);
+            this.sName = session_item_view.findViewById(R.id.session_name);
             this.sLocation = session_item_view.findViewById(R.id.session_location);
-            this.sDate = session_item_view.findViewById(R.id.meal_date);
-            this.sDuration = session_item_view.findViewById(R.id.meal_duration);
+            this.sDate = session_item_view.findViewById(R.id.session_date);
+            this.sDuration = session_item_view.findViewById(R.id.session_duration);
         }
     }
 }
