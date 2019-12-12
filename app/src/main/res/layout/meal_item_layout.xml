@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!--  Séparateur  -->
+
+    <ImageView
+        android:id="@+id/meal_image_ic"
+        android:layout_width="66dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.012"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_image" />
+
+    <TextView
+        android:id="@+id/meal_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/separator"
+        app:layout_constraintStart_toEndOf="@+id/meal_image_ic"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/meal_date"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="28dp"
+        android:text="03/09/2019"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/calendar_image_session_item" />
+
+    <TextView
+        android:id="@+id/meal_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="28dp"
+        android:text="01:00"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/calendar_image_session_item" />
+
+    <ImageView
+        android:id="@+id/calendar_image_session_item"
+        android:layout_width="20dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@mipmap/ic_calendar" />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/mainGreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/rightVerticalBar"
+        android:layout_width="2dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

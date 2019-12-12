@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/session_save_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/save_button_label"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/session_cancel_button"
+        app:layout_constraintTop_toBottomOf="@+id/meal_edit_add_description_Text" />
+
+    <Button
+        android:id="@+id/session_cancel_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/red"
+        android:text="@string/cancel_button_label"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/session_save_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_edit_add_description_Text" />
+
+    <EditText
+        android:id="@+id/meal_edit_add_description_Text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/session_description_content_bg"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/optional"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/session_cancel_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_add_edit_description_label"
+        android:importantForAutofill="no" />
+
+    <ImageView
+        android:id="@+id/meal_image_ic"
+        android:layout_width="227dp"
+        android:layout_height="210dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_add_edit_beginning_date_content"
+        app:srcCompat="@mipmap/ic_image" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bottom_bar_button"
+        style="@style/Platform.MaterialComponents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="240dp"
+        android:src="@mipmap/ic_add"
+        app:backgroundTint="@color/mainGreen"
+        app:layout_anchor="@+id/bottom_bar"
+        app:layout_anchorGravity="top|center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.755"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:maxImageSize="50dp"
+        app:useCompatPadding="true" />
+
+    <TextView
+        android:id="@+id/meal_add_edit_description_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/description_label"
+        android:textColor="@color/mainGreen"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_image_ic" />
+
+    <TextView
+        android:id="@+id/meal_add_edit_beginning_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/meal_date"
+        android:textColor="@color/mainGreen"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_edit_title_content" />
+
+    <TextView
+        android:id="@+id/meal_add_edit_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/meal_time"
+        android:textColor="@color/mainGreen"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/meal_add_edit_beginning_date_content"
+        app:layout_constraintTop_toBottomOf="@+id/meal_edit_title_content" />
+
+    <TextView
+        android:id="@+id/meal_edit_title_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/title_label"
+        android:textColor="@color/mainGreen"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar" />
+
+    <EditText
+        android:id="@+id/meal_edit_title_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/mainGreen"
+        android:ems="14"
+        android:hint="@string/required"
+        android:inputType="text"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_edit_title_label"
+        android:importantForAutofill="no"/>
+
+
+    <EditText
+        android:id="@+id/meal_add_edit_beginning_date_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/mainGreen"
+        android:ems="8"
+        android:focusable="false"
+        android:hint="@string/required"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_add_edit_beginning_date_label"
+        android:importantForAutofill="no"/>
+
+    <EditText
+        android:id="@+id/meal_add_edit_end_date_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/mainGreen"
+        android:ems="8"
+        android:focusable="false"
+        android:hint="@string/required"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/meal_add_edit_beginning_date_content"
+        app:layout_constraintTop_toBottomOf="@+id/meal_add_edit_time_label"
+        android:importantForAutofill="no" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
