@@ -25,10 +25,6 @@
     <string name="session_intent_context_edit" translatable="false">SESSION_EDIT_INTENT</string>
     <string name="session_intent_context_add" translatable="false">SESSION_ADD_INTENT</string>
 
-    <!-- Strings used in meal fragment -->
-    <string name="meal_date">Date</string>
-    <string name="meal_time">Time</string>
-
     <!-- Content Description String -->
     <string name="cd_sessions" translatable="false">My sport sessions button</string>
     <string name="cd_meals" translatable="false">My meals button</string>
@@ -49,7 +45,7 @@
     <string name="required">Required*</string>
     <string name="form_error_message">Form is incorrect</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_home">Home</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>

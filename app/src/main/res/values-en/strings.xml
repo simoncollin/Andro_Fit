@@ -28,6 +28,4 @@
     <string name="title_session_add">Add session</string>
     <string name="title_session_detail">Session detail</string>
     <string name="title_session_edit">Edit session</string>
-    <string name="meal_date">Date</string>
-    <string name="meal_time">Time</string>
 </resources>
