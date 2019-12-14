@@ -1,5 +1,7 @@
 package com.cnamge.fipinfo.androfit.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.orm.SugarRecord;
@@ -135,8 +137,17 @@ public class Session extends SugarRecord<Session> {
     }
 
     public String getDurationString(){
-        long diff = this.endDate - this.beginDate;
-        SimpleDateFormat df2 = new SimpleDateFormat("HH:mm", Locale.FRANCE);
-        return df2.format(diff) + "h"; // Format 01:00
+        Date beg = new Date(this.beginDate);
+        Date end = new Date(this.endDate + 60000);
+        beg.setSeconds(0);
+        end.setSeconds(0);
+
+        long diff = end.getTime() - beg.getTime();
+        long diffMinutes = diff / (60 * 1000) % 60;
+        long diffHours = diff / (60 * 60 * 1000) % 24;
+        String hours = String.format("%02d", diffHours);
+        String min = String.format("%02d", diffMinutes);
+
+        return hours + ":" + min + "h";
     }
 }
