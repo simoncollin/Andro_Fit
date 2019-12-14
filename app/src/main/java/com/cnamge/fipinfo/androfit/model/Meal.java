@@ -2,6 +2,10 @@ package com.cnamge.fipinfo.androfit.model;
 
 import com.orm.SugarRecord;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Meal extends SugarRecord<Meal> {
     private String name;
     private long date;
@@ -58,5 +62,11 @@ public class Meal extends SugarRecord<Meal> {
                 ", image_url='" + image_url + '\'' +
                 ", id=" + id +
                 '}';
+    }
+
+    public String getDateString(){
+        Date date = new Date(this.date);
+        SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/YYYY", Locale.FRANCE);
+        return df2.format(date); // Format 09/10/2019
     }
 }

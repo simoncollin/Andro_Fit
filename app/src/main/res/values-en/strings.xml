@@ -28,4 +28,5 @@
     <string name="title_session_add">Add session</string>
     <string name="title_session_detail">Session detail</string>
     <string name="title_session_edit">Edit session</string>
+    <string name="meal_deleted">: meal deleted</string>
 </resources>
