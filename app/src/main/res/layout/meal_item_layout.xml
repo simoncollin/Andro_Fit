@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -52,25 +51,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/calendar_image_session_item" />
 
-    <TextView
-        android:id="@+id/meal_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="28dp"
-        android:text="01:00"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/calendar_image_session_item" />
-
     <ImageView
         android:id="@+id/calendar_image_session_item"
         android:layout_width="20dp"
         android:layout_height="19dp"
-        android:layout_marginEnd="148dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -63,5 +63,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_home">Home</string>
     <string name="title_notifications">Notifications</string>
+    <string name="meal_deleted">: meal deleted</string>
+    <string name="meal_intent_name" translatable="false">MEAL_INTENT</string>
 
 </resources>

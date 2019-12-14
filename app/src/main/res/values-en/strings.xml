@@ -28,9 +28,5 @@
     <string name="title_session_add">Add session</string>
     <string name="title_session_detail">Session detail</string>
     <string name="title_session_edit">Edit session</string>
-    <string name="title_meal_add">Add Meal</string>
-    <string name="title_meal_detail">Meal detail</string>
-    <string name="title_meal_edit">Edit meal</string>
-    <string name="meal_date_label">Date</string>
-    <string name="meal_time_label">Time</string>
+    <string name="meal_deleted">: meal deleted</string>
 </resources>
