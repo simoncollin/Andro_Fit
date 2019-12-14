@@ -11,6 +11,7 @@ public class Meal extends SugarRecord<Meal> {
     private long date;
     private String description;
     private String image_url;
+    private User creator;
 
     public Meal() {}
 
@@ -19,6 +20,14 @@ public class Meal extends SugarRecord<Meal> {
         this.date        = date;
         this.description = description;
         this.image_url   = image_url;
+    }
+
+    public Meal(String name, long date, String description, String image_url, User creator) {
+        this.name        = name;
+        this.date        = date;
+        this.description = description;
+        this.image_url   = image_url;
+        this.creator     = creator;
     }
 
     public String getName() {
@@ -51,6 +60,14 @@ public class Meal extends SugarRecord<Meal> {
 
     public void setimage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     @Override

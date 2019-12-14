@@ -15,8 +15,23 @@ public class Session extends SugarRecord<Session> {
     private long endDate;
     private String description;
     private long calendarEventId;
+    private User creator;
 
     public Session() {}
+
+    public Session(String name, String location, long beginDate, long endDate, String description, long calendarEventId, User creator) throws Exception {
+        if (beginDate > endDate) {
+            throw new Exception("endDate should be greater than beginDate");
+        }
+
+        this.name            = name;
+        this.location        = location;
+        this.beginDate       = beginDate;
+        this.endDate         = endDate;
+        this.description     = description;
+        this.calendarEventId = calendarEventId;
+        this.creator         = creator;
+    }
 
     public Session(String name, String location, long beginDate, long endDate, String description, long calendarEventId) throws Exception {
         if (beginDate > endDate) {
@@ -79,6 +94,14 @@ public class Session extends SugarRecord<Session> {
 
     public void setCalendarEventId(long calendarEventId) {
         this.calendarEventId = calendarEventId;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     @Override
