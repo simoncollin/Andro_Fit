@@ -1,4 +1,4 @@
-package com.cnamge.fipinfo.androfit.fragments;
+package com.cnamge.fipinfo.androfit.friends;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

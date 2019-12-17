@@ -1,6 +1,8 @@
 package com.cnamge.fipinfo.androfit.main;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.cnamge.fipinfo.androfit.R;
-import com.cnamge.fipinfo.androfit.fragments.FriendsFragment;
+import com.cnamge.fipinfo.androfit.friends.FriendsFragment;
 import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
 import com.cnamge.fipinfo.androfit.model.FriendRequest;
@@ -166,6 +168,15 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         SugarRecord.deleteAll(Session.class);
 
         User currentUser = new User("Perlinpinpin");
+        currentUser.save();
+
+        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.preferences_file_label), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove(getString(R.string.current_user_id));
+        editor.putLong(getString(R.string.current_user_id), currentUser.getId());
+        editor.commit();
+
+
         for (int i = 1; i <= 5; i++) {
             String desc;
             Boolean accepted;
