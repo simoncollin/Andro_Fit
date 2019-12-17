@@ -28,4 +28,9 @@
     <string name="title_session_add">Ajouter une séance</string>
     <string name="title_session_detail">Détail de la séance</string>
     <string name="title_session_edit">Modifier la séance</string>
+    <string name="title_meal_add">Ajouter un repas</string>
+    <string name="title_meal_detail">Détail du repas</string>
+    <string name="title_meal_edit">Modifier le repas</string>
+    <string name="meal_date_label">Date</string>
+    <string name="meal_time_label">Heure</string>
 </resources>

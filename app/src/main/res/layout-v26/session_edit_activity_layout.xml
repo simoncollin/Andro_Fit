@@ -12,7 +12,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/session_save_button"
+        android:id="@+id/meal_save_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -25,11 +25,11 @@
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/session_cancel_button"
+        app:layout_constraintStart_toEndOf="@+id/meal_cancel_button"
         app:layout_constraintTop_toBottomOf="@+id/session_description_editText" />
 
     <Button
-        android:id="@+id/session_cancel_button"
+        android:id="@+id/meal_cancel_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
@@ -41,7 +41,7 @@
         android:textSize="18sp"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/session_save_button"
+        app:layout_constraintEnd_toStartOf="@+id/meal_save_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/session_description_editText" />
 
@@ -57,7 +57,7 @@
         android:gravity="start|top"
         android:hint="@string/optional"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/session_cancel_button"
+        app:layout_constraintBottom_toTopOf="@+id/meal_cancel_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

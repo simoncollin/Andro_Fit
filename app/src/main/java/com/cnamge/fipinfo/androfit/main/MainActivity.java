@@ -17,6 +17,7 @@ import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.fragments.FriendsFragment;
 import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
+import com.cnamge.fipinfo.androfit.meals.MealsEditActivity;
 import com.cnamge.fipinfo.androfit.model.Meal;
 import com.cnamge.fipinfo.androfit.model.Session;
 import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
@@ -147,6 +148,13 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     public void addSession() {
         Intent intent = new Intent(this, SessionEditActivity.class);
         intent.putExtra(getString(R.string.session_intent_edit_context_name), getString(R.string.session_intent_context_add));
+        startActivity(intent);
+    }
+
+    @Override
+    public void addMeal() {
+        Intent intent = new Intent(this, MealsEditActivity.class);
+        intent.putExtra(getString(R.string.meal_intent_edit_context_name), getString(R.string.meal_intent_context_add));
         startActivity(intent);
     }
 

@@ -11,7 +11,11 @@
     <string name="title_session_add">Add session</string>
     <string name="title_session_edit">Edit session</string>
 
-    <!-- Srings used in session fragment -->
+    <string name="title_meal_detail">Meal detail</string>
+    <string name="title_meal_add">Add meal</string>
+    <string name="title_meal_edit">Edit meal</string>
+
+    <!-- Strings used in session fragment -->
     <string name="sessions_deleted">" : session deleted"</string>
     <string name="title_label">Title</string>
     <string name="location_label">Location</string>
@@ -31,7 +35,19 @@
     <string name="cd_friends" translatable="false">My friends button</string>
     <string name="cd_settings" translatable="false">Settings button</string>
 
+    <!-- Strings used in meal fragment -->
+    <string name="meal_date" translatable="false">Date</string>
+    <string name="meal_time" translatable="false">Time</string>
 
+    <string name="meal_intent_name" translatable="false">MEAL_INTENT</string>
+    <string name="meal_intent_edit_context_name" translatable="false">MEAL_INTENT_CONTEXT</string>
+    <string name="meal_intent_context_edit" translatable="false">MEAL_EDIT_INTENT</string>
+    <string name="meal_intent_context_add" translatable="false">MEAL_ADD_INTENT</string>
+
+    <string name="meal_date_label">Date</string>
+    <string name="meal_time_label">Time</string>
+
+    <!-- Strings used in settings fragment -->
     <string name="desc_androfit">© 2020 Andro\'Fit - CNAM GRAND-EST\n\nAndroid Team :\nDESVIGNES MATTHIEU - LEGER ALIX - COLLIN SIMON - AYAD MOHAMMED-YACINE</string>
     <string name="credits">Credits</string>
     <string name="langue">Language :</string>
