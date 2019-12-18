@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -51,8 +52,6 @@ public class SessionEditActivity extends AppCompatActivity implements SessionEdi
         setActionBar(appBar);
         TextView appbarRightTextView = findViewById(R.id.app_bar_rightTextView);
 
-        linkActivityToXml();
-
         if (getIntent() != null && getIntent().getExtras() != null) {
             String context = (String) getIntent().getExtras().get(getString(R.string.session_intent_edit_context_name));
             if (context != null && context.equals(getString(R.string.session_intent_context_add))){
@@ -64,6 +63,8 @@ public class SessionEditActivity extends AppCompatActivity implements SessionEdi
                 this.presenter = new SessionEditPresenter(this, this.getApplicationContext(), sessionId);
             }
         }
+
+        linkActivityToXml();
 
         setEditionListener();
     }
@@ -77,7 +78,8 @@ public class SessionEditActivity extends AppCompatActivity implements SessionEdi
     private void linkActivityToXml() {
         this.cancelButton = findViewById(R.id.session_cancel_button);
         this.saveButton = findViewById(R.id.session_save_button);
-        this.cancelButton.setOnClickListener(v -> presenter.onCancelButtonClicked());
+
+        this.cancelButton.setOnClickListener(v -> Log.println(Log.ERROR, "TEST", "Test"));
         this.saveButton.setOnClickListener(v -> presenter.onRegisterButtonClicked());
 
         this.descriptionEditText = findViewById(R.id.session_description_editText);

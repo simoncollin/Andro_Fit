@@ -75,10 +75,10 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
 
         private void loadImageFromStorage(String path){
             try {
-                File f=new File(path);
+                File f = new File(path);
                 Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
                 sImage.setImageBitmap(b);
-            } catch (FileNotFoundException e){
+            } catch (Exception e){
                 e.printStackTrace();
                 sImage.setImageResource(R.mipmap.ic_image);
             }
