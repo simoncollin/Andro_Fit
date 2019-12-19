@@ -52,6 +52,8 @@ public class SessionEditActivity extends AppCompatActivity implements SessionEdi
         setActionBar(appBar);
         TextView appbarRightTextView = findViewById(R.id.app_bar_rightTextView);
 
+        linkActivityToXml();
+
         if (getIntent() != null && getIntent().getExtras() != null) {
             String context = (String) getIntent().getExtras().get(getString(R.string.session_intent_edit_context_name));
             if (context != null && context.equals(getString(R.string.session_intent_context_add))){
@@ -63,8 +65,6 @@ public class SessionEditActivity extends AppCompatActivity implements SessionEdi
                 this.presenter = new SessionEditPresenter(this, this.getApplicationContext(), sessionId);
             }
         }
-
-        linkActivityToXml();
 
         setEditionListener();
     }
