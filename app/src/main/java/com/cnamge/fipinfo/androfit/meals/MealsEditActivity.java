@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -354,6 +355,7 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
 
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
 
         // Result code is RESULT_OK only if the user selects an Image
         if (resultCode == Activity.RESULT_OK)
@@ -373,9 +375,11 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
                     String imgDecodableString = cursor.getString(columnIndex);
 
                     cursor.close();
-                    // Set the Image in ImageView after decoding the String
-                    imageView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
 
+                    this.currentMeal.setimage_url(imgDecodableString);
+
+                    // Set the Image in ImageView after decoding the String
+                    //imageView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
                     break;
 
             }

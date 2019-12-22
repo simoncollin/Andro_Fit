@@ -72,7 +72,6 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
             this.sImage = meal.findViewById(R.id.meal_image_ic);
         }
 
-
         private void loadImageFromStorage(String path){
             try {
                 File f = new File(path);
