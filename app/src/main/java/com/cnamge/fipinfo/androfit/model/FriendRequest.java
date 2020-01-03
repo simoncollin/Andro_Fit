@@ -44,7 +44,7 @@ public class FriendRequest extends SugarRecord<FriendRequest> {
         return "FriendRequest{" +
             "user='" + user + '\'' +
             ", accepted='" + accepted + '\'' +
-            ", friend=" + user +
+            ", friend=" + friend +
             ", id=" + id +
             '}';
     }

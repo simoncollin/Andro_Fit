@@ -16,9 +16,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.cnamge.fipinfo.androfit.R;
-import com.cnamge.fipinfo.androfit.friends.FriendsFragment;
 import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
+import com.cnamge.fipinfo.androfit.friends.FriendsFragment;
 import com.cnamge.fipinfo.androfit.model.FriendRequest;
 import com.cnamge.fipinfo.androfit.model.Meal;
 import com.cnamge.fipinfo.androfit.model.Session;
@@ -180,12 +180,15 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         for (int i = 1; i <= 5; i++) {
             String desc;
             Boolean accepted;
-            if (i % 2 == 0) {
+            if (i % 3 == 0) {
                 desc = "description " + i;
                 accepted = true;
-            } else {
+            } else if (i % 3 == 1) {
                 desc = "";
                 accepted = false;
+            } else {
+                desc = "";
+                accepted = null;
             }
 
             User user = new User("friend n° " + i);

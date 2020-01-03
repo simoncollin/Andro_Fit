@@ -29,4 +29,5 @@
     <string name="title_session_detail">Détail de la séance</string>
     <string name="title_session_edit">Modifier la séance</string>
     <string name="meal_deleted">: repas supprimé</string>
+    <string name="not_friends_msg">Vous n\'êtes pas amis avec cet utilisateur.</string>
 </resources>
