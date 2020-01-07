@@ -68,14 +68,18 @@ public class FriendsFragment extends Fragment implements FriendsAdapter.Listener
     }
 
     @Override
-    public void onAcceptClicked(FriendRequest item) {
-        //TODO: Update object in DB and refresh his view
-        showMessage("Accept Clicked");
+    public void onAcceptClicked(FriendRequest item, int position) {
+        item.setAccepted(true);
+        item.save();
+        this.adapter.setItems(getAllRequests());
+        this.adapter.notifyItemChanged(position);
     }
 
     @Override
-    public void onDeclineClicked(FriendRequest item) {
-        //TODO: Update object in DB and refresh his view
-        showMessage("Decline Clicked");
+    public void onDeclineClicked(FriendRequest item, int position) {
+        item.setAccepted(false);
+        item.save();
+        this.adapter.setItems(getAllRequests());
+        this.adapter.notifyItemChanged(position);
     }
 }

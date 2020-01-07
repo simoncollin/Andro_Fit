@@ -19,8 +19,8 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsV
 
     interface Listener {
         void onItemClicked(FriendRequest item);
-        void onAcceptClicked(FriendRequest item);
-        void onDeclineClicked(FriendRequest item);
+        void onAcceptClicked(FriendRequest item, int index);
+        void onDeclineClicked(FriendRequest item, int index);
     }
 
     private List<FriendRequest> items;
@@ -36,6 +36,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsV
     List<FriendRequest> getItems() {
         return this.items;
     }
+    void setItems(List<FriendRequest> items){ this.items = items; }
 
     @Override
     public FriendsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -56,11 +57,10 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsV
         if(item.getAccepted() == null){
             holder.acceptIV.setAlpha(1F);
             holder.declineIV.setAlpha(1F);
-            holder.acceptIV.setOnClickListener(v -> listener.onAcceptClicked(item));
-            holder.declineIV.setOnClickListener(v -> listener.onDeclineClicked(item));
+            holder.acceptIV.setOnClickListener(v -> listener.onAcceptClicked(item, position));
+            holder.declineIV.setOnClickListener(v -> listener.onDeclineClicked(item, position));
         } else if(!item.getAccepted()){
-            holder.itemView.setBackgroundColor(context.getColor(R.color.grey));
-            holder.itemView.setAlpha(0.6F);
+            holder.setDeclinedView(context);
         }
     }
 
@@ -80,7 +80,10 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsV
             this.sName = request.findViewById(R.id.friend_request_username);
             this.acceptIV = request.findViewById(R.id.accept_request_button);
             this.declineIV = request.findViewById(R.id.decline_request_button);
+        }
 
+        void setDeclinedView(Context context){
+            this.itemView.setBackgroundColor(context.getColor(R.color.grey));
         }
 
     }
