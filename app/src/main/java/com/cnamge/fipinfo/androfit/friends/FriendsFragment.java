@@ -1,6 +1,7 @@
 package com.cnamge.fipinfo.androfit.friends;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,8 +61,9 @@ public class FriendsFragment extends Fragment implements FriendsAdapter.Listener
     @Override
     public void onItemClicked(FriendRequest item) {
         if (item.getAccepted() != null && item.getAccepted()){
-            //TODO: Launch friend detail activity
-            showMessage("Going on profile of " + item.getFriend().getUsername());
+            Intent intent = new Intent(this.getActivity(), FriendDetailActivity.class);
+            intent.putExtra("FRIEND_ID", item.getFriend().getId());
+            startActivity(intent);
         }else{
             showMessage(getString(R.string.not_friends_msg));
         }
