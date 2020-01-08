@@ -15,7 +15,7 @@ import java.util.List;
 
 public class SessionsAdapter extends RecyclerView.Adapter<SessionsAdapter.SessionsViewHolder>  {
 
-    interface Listener {
+    public interface Listener {
         void onItemClicked(Session item);
     }
 

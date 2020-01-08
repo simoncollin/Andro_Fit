@@ -10,6 +10,8 @@ import androidx.core.app.ActivityCompat;
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.CalendarInteractor;
 import com.cnamge.fipinfo.androfit.model.Session;
+import com.cnamge.fipinfo.androfit.model.User;
+import com.orm.SugarRecord;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,6 +53,10 @@ class SessionEditPresenter {
         this.mInterface = mInterface;
         this.context = context;
         this.currentSession = new Session();
+
+        User currentUser = SugarRecord.findById(User.class, context.getSharedPreferences(context.getString(R.string.preferences_file_label), Context.MODE_PRIVATE).getLong(context.getString(R.string.current_user_id), -1));
+        currentSession.setCreator(currentUser);
+
         this.calendarInteractor = new CalendarInteractor(this.mInterface.getActivity());
     }
 
@@ -145,14 +151,16 @@ class SessionEditPresenter {
     }
 
     void onRegisterButtonClicked() {
-        this.currentSession.save();
-        mInterface.registerModification();
-        Activity activity = this.mInterface.getActivity();
-        if (activity.checkSelfPermission(Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED
-            && activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR}, 1);
-        } else {
-            this.saveCalendarEvent();
+        if (!formHaveError()){
+            this.currentSession.save();
+            mInterface.registerModification();
+            Activity activity = this.mInterface.getActivity();
+            if (activity.checkSelfPermission(Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED
+                && activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR}, 1);
+            } else {
+                this.saveCalendarEvent();
+            }
         }
     }
 

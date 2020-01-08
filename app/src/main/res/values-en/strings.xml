@@ -29,4 +29,5 @@
     <string name="title_session_detail">Session detail</string>
     <string name="title_session_edit">Edit session</string>
     <string name="meal_deleted">: meal deleted</string>
+    <string name="not_friends_msg">You aren\'t friend with this user.</string>
 </resources>

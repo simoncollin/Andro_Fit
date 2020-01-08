@@ -49,5 +49,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="meal_deleted">: meal deleted</string>
     <string name="meal_intent_name" translatable="false">MEAL_INTENT</string>
+    <string name="preferences_file_label" translatable="false">preferences_files_label</string>
+    <string name="current_user_id" translatable="false">current_user_id</string>
+    <string name="not_friends_msg">You aren\'t friend with this user.</string>
 
 </resources>
