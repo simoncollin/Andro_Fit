@@ -11,9 +11,9 @@ import java.util.Locale;
 public class Meal extends SugarRecord<Meal> {
     private String name;
     private long date;
+    private long time;
     private String description;
     private String image_url;
-    private long calendarEventId;
 
     public Meal() {}
 
@@ -23,7 +23,6 @@ public class Meal extends SugarRecord<Meal> {
         this.time        = time;
         this.description = description;
         this.image_url   = image_url;
-        this.calendarEventId = calendarEventId;
     }
 
     public Meal(String s, long l, String desc, String s1) {
@@ -67,14 +66,6 @@ public class Meal extends SugarRecord<Meal> {
 
     public void setTime (long time){
         this.time = time;
-    }
-
-    public long getCalendarEventId() {
-        return calendarEventId;
-    }
-
-    public void setCalendarEventId(long calendarEventId) {
-        this.calendarEventId = calendarEventId;
     }
 
 

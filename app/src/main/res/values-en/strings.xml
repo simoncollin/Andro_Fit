@@ -34,9 +34,4 @@
     <string name="meal_date_label">Date</string>
     <string name="meal_time_label">Time</string>
     <string name="meal_deleted">: meal deleted</string>
-    <string name="meal_time_label">Time</string>
-    <string name="meal_date_label">Date</string>
-    <string name="title_meal_add">Add Meal</string>
-    <string name="title_meal_detail">Meal Detail</string>
-    <string name="title_meal_edit">Edit Meal</string>
 </resources>
