@@ -11,14 +11,13 @@ import java.util.Locale;
 public class Meal extends SugarRecord<Meal> {
     private String name;
     private long date;
-    private long time;
     private String description;
     private String image_url;
     private long calendarEventId;
 
     public Meal() {}
 
-    public Meal(String name, long date, long time, String description, String image_url, long calendarEventId) {
+    public Meal(String name, long date, long time, String description, String image_url) {
         this.name        = name;
         this.date        = date;
         this.time        = time;
@@ -44,10 +43,6 @@ public class Meal extends SugarRecord<Meal> {
 
     public long getDate() {
         return date;
-    }
-
-    public long getTime() {
-        return time;
     }
 
     public void setDate(long date) {
@@ -102,8 +97,8 @@ public class Meal extends SugarRecord<Meal> {
 
 
     public String getTimeString(){
-        long diff = this.time;
+        Date date = new Date(this.date);
         SimpleDateFormat df2 = new SimpleDateFormat("HH:mm", Locale.FRANCE);
-        return df2.format(diff); // Format 01:00
+        return df2.format(date);
     }
 }

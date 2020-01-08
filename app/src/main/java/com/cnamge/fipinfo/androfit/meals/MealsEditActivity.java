@@ -146,11 +146,10 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
 
     void onTimeClicked(){
         this.currentDatePicker = CurrentDatePicker.MEAL_TIME;
-        showTimePicker(context.getString(R.string.meal_time_label));
+        showDatePicker(context.getString(R.string.meal_time_label));
     }
 
     void saveCalendarEvent() {
-        this.calendarInteractor.saveCalendarEvent(this.currentMeal);
     }
 
     void onRegisterButtonClicked() {

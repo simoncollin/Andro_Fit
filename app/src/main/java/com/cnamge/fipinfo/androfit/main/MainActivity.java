@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.fragments.FriendsFragment;
-import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
+import com.cnamge.fipinfo.androfit.meals.MealsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
 import com.cnamge.fipinfo.androfit.meals.MealsEditActivity;
 import com.cnamge.fipinfo.androfit.model.Meal;
@@ -177,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             }
             (new Meal(
                     "Meal number " + i,
+                    System.currentTimeMillis() + (i * 6000),
                     System.currentTimeMillis() + (i * 6000),
                     desc,
                     "Meal url " + i

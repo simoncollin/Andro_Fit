@@ -39,6 +39,8 @@
     <string name="meal_date" translatable="false">Date</string>
     <string name="meal_time" translatable="false">Time</string>
 
+
+    <string name="meal_intent_name" translatable="false">SESSION_INTENT</string>
     <string name="meal_intent_edit_context_name" translatable="false">MEAL_INTENT_CONTEXT</string>
     <string name="meal_intent_context_edit" translatable="false">MEAL_EDIT_INTENT</string>
     <string name="meal_intent_context_add" translatable="false">MEAL_ADD_INTENT</string>
@@ -63,6 +65,5 @@
     <string name="title_home">Home</string>
     <string name="title_notifications">Notifications</string>
     <string name="meal_deleted">: meal deleted</string>
-    <string name="meal_intent_name" translatable="false">MEAL_INTENT</string>
 
 </resources>

@@ -37,12 +37,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+    <ImageView
+        android:id="@+id/calendar_image_session_item"
+        android:layout_width="20dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@mipmap/ic_calendar" />
+
     <TextView
         android:id="@+id/meal_date"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="40dp"
         android:text="03/09/2019"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -51,17 +63,21 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/calendar_image_session_item" />
 
-    <ImageView
-        android:id="@+id/calendar_image_session_item"
-        android:layout_width="20dp"
+    <TextView
+        android:id="@+id/meal_time"
+        android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="8dp"
+        android:text="23:59"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@mipmap/ic_calendar" />
+        app:layout_constraintStart_toEndOf="@+id/calendar_image_session_item"
+        app:layout_constraintTop_toBottomOf="@+id/meal_date"
+        app:layout_constraintVertical_bias="0.384" />
 
     <View
         android:id="@+id/separator"
