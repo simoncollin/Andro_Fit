@@ -75,6 +75,7 @@ public class FriendsFragment extends Fragment implements FriendsAdapter.Listener
         item.save();
         this.adapter.setItems(getAllRequests());
         this.adapter.notifyItemChanged(position);
+        showMessage("Friend request from " + item.getFriend().getUsername() + " accepted");
     }
 
     @Override
@@ -83,5 +84,7 @@ public class FriendsFragment extends Fragment implements FriendsAdapter.Listener
         item.save();
         this.adapter.setItems(getAllRequests());
         this.adapter.notifyItemChanged(position);
+        showMessage("Friend request from " + item.getFriend().getUsername() + " declined");
+
     }
 }

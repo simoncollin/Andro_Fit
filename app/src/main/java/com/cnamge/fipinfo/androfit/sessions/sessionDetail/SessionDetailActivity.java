@@ -1,5 +1,6 @@
 package com.cnamge.fipinfo.androfit.sessions.sessionDetail;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -11,11 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Session;
+import com.cnamge.fipinfo.androfit.model.User;
 import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
+import com.orm.SugarRecord;
 
 
 public class SessionDetailActivity extends AppCompatActivity implements SessionDetailInterface {
@@ -78,7 +81,6 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         this.backButton = findViewById(R.id.session_detail_back_button);
         this.editButton = findViewById(R.id.session_detail_edit_button);
 
-        this.editButton.setOnClickListener(v -> presenter.onEditButtonClicked());
         this.backButton.setOnClickListener(v -> presenter.onBackButtonClicked());
     }
 
@@ -94,6 +96,15 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
             this.sessionDescriptionLabel.setAlpha(0f);
         }else{
             this.sessionDescriptionContent.setText(session.getDescription());
+        }
+
+        User sessionCreator = session.getCreator();
+        User appOwner = SugarRecord.findById(User.class, getSharedPreferences(getString(R.string.preferences_file_label), Context.MODE_PRIVATE).getLong(getString(R.string.current_user_id), -1));
+
+        if (!sessionCreator.equals(appOwner)){
+            this.editButton.setAlpha(0F);
+        }else{
+            this.editButton.setOnClickListener(v -> presenter.onEditButtonClicked());
         }
     }
 

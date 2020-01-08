@@ -38,6 +38,8 @@ public class FriendDetailActivity extends AppCompatActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             long userId = (long) getIntent().getExtras().get("FRIEND_ID");
             this.currentFriend = User.findById(User.class, userId);
+            this.mealsFragment.setCurrentUser(currentFriend);
+            this.sessionsFragment.setCurrentUser(currentFriend);
             appbarRightTextView.setText(currentFriend.getUsername());
         }
 

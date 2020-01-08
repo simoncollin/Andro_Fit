@@ -21,14 +21,14 @@ import java.util.List;
 
 public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHolder>  {
 
-    interface Listener {
+    public interface Listener {
         void onItemClicked(Meal item);
     }
 
     private List<Meal> items;
     private Listener listener;
 
-    MealsAdapter(List<Meal> items, Listener listener) {
+    public MealsAdapter(List<Meal> items, Listener listener) {
         this.items = items;
         this.listener = listener;
     }

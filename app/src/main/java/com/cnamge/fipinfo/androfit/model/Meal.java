@@ -78,6 +78,7 @@ public class Meal extends SugarRecord<Meal> {
                 ", description='" + description + '\'' +
                 ", image_url='" + image_url + '\'' +
                 ", id=" + id +
+                ", creator username=" + creator.getUsername() +
                 '}';
     }
 
