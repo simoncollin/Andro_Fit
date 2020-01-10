@@ -3,7 +3,6 @@ package com.cnamge.fipinfo.androfit.meals;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.net.Uri;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
@@ -31,6 +28,7 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class MealsEditActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
@@ -56,6 +54,7 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
     private Context context;
 
     private CurrentDatePicker currentDatePicker = null;
+
 
     private CalendarInteractor calendarInteractor;
     private int currentYear = 0;
@@ -113,15 +112,17 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
         Calendar c = Calendar.getInstance();
-        c.set(currentYear, currentMonth, currentDay, hourOfDay, minute);
+        if (currentYear != 0) {
+            c.set(currentYear, currentMonth, currentDay, hourOfDay, minute);
+        } else {
+            c.setTime(new Date());
+            c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            c.set(Calendar.MINUTE, minute);
+        }
         long date = c.getTimeInMillis();
         try {
-            if (this.currentDatePicker == CurrentDatePicker.MEAL_DATE) {
-                currentMeal.setDate(date);
-
-            } else {
-                currentMeal.setTime(date);
-            }
+            currentMeal.setDate(date);
+            currentMeal.setTime(date);
             refreshDateEditText(currentMeal.getDateString(), currentMeal.getTimeString());
             dateHaveError = false;
         } catch (Exception e){
@@ -138,9 +139,6 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
     void onTimeClicked(){
         this.currentDatePicker = CurrentDatePicker.MEAL_TIME;
         showTimePicker(context.getString(R.string.meal_time_label));
-    }
-
-    void saveCalendarEvent() {
     }
 
     void onRegisterButtonClicked() {
@@ -236,13 +234,8 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
         this.currentDay = dayOfMonth;
         this.currentMonth = monthOfYear;
         this.currentYear = year;
-        String title;
-        if (this.currentDatePicker == CurrentDatePicker.MEAL_DATE){
-            title = context.getString(R.string.meal_date_label);
-        } else {
-            title = context.getString(R.string.meal_time_label);
-        }
-        showTimePicker(title);
+
+        showTimePicker(context.getString(R.string.meal_time_label));
     }
 
     // DateTime picker methods
@@ -306,22 +299,7 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
         return this;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults.length == 0 || grantResults[0] == PackageManager.PERMISSION_DENIED) {
-            if (requestCode == 1) {
-                Toast.makeText(getApplicationContext(), "You must accept agenda permissions to synchronize your sessions in your agenda", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            if (requestCode == 1) {
-                saveCalendarEvent();
-            }
-        }
-    }
-
     void onAddMealPictureButtonClick(){
-
         pickFromGallery();
     }
 
@@ -344,28 +322,27 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
         // Result code is RESULT_OK only if the user selects an Image
         if (resultCode == Activity.RESULT_OK)
             switch (requestCode){
-                case GALLERY_REQUEST_CODE:
-                    //data.getData return the content URI for the selected Image
-                    Uri selectedImage = data.getData();
+            case GALLERY_REQUEST_CODE:
+                //data.getData return the content URI for the selected Image
+                Uri selectedImage = data.getData();
 
-                    String[] filePathColumn = { MediaStore.Images.Media.DATA };
-                    // Get the cursor
-                    Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                    // Move to first row
-                    cursor.moveToFirst();
-                    //Get the column index of MediaStore.Images.Media.DATA
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    //Gets the String value in the column
-                    String imgDecodableString = cursor.getString(columnIndex);
+                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                // Get the cursor
+                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                // Move to first row
+                cursor.moveToFirst();
+                //Get the column index of MediaStore.Images.Media.DATA
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                //Gets the String value in the column
+                String imgDecodableString = cursor.getString(columnIndex);
 
-                    cursor.close();
+                cursor.close();
 
-                    this.currentMeal.setimage_url(imgDecodableString);
+                this.currentMeal.setimage_url(imgDecodableString);
 
-                    // Set the Image in ImageView after decoding the String
-                    //imageView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
-                    break;
-
-            }
+                // Set the Image in ImageView after decoding the String
+                //imageView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
+                break;
+         }
     }
 }
