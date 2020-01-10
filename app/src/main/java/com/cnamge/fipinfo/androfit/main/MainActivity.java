@@ -15,9 +15,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.fragments.FriendsFragment;
-import com.cnamge.fipinfo.androfit.meals.MealsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
 import com.cnamge.fipinfo.androfit.meals.MealsEditActivity;
+import com.cnamge.fipinfo.androfit.meals.MealsFragment;
 import com.cnamge.fipinfo.androfit.model.Meal;
 import com.cnamge.fipinfo.androfit.model.Session;
 import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
@@ -26,7 +26,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orm.SugarRecord;
 
 import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity implements MainInterface {
 
@@ -68,11 +67,11 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         this.setupBottomBar();
 
         //FOR TEST ONLY
-        try {
+        /*try {
             this.purgeAndReplaceFixtures();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void setupBottomBar(){

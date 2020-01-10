@@ -14,10 +14,10 @@
         android:id="@+id/meal_detail_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="30dp"
         android:text="Meal title"
         android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_bar" />
 
@@ -25,31 +25,32 @@
     <TextView
         android:id="@+id/meal_detail_date"
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:layout_marginStart="24dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="1dp"
         android:text="01/01/2019"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/meal_detail_time"
         app:layout_constraintStart_toEndOf="@+id/meal_detail_date_ic"
         app:layout_constraintTop_toBottomOf="@+id/meal_detail_title" />
 
     <TextView
         android:id="@+id/meal_detail_time"
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:layout_marginStart="24dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="100dp"
         android:text="15:30"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/meal_detail_date"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meal_detail_title" />
 
     <ImageView
         android:id="@+id/meal_detail_date_ic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="29dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meal_detail_title"
         app:srcCompat="@mipmap/ic_calendar" />
@@ -58,7 +59,8 @@
         android:id="@+id/meal_image_ic"
         android:layout_width="377dp"
         android:layout_height="266dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meal_detail_date"
         app:srcCompat="@mipmap/ic_image" />
@@ -68,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
         android:text="@string/description_label"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,12 +81,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/meal_description_content_bg"
         android:text="#AndroLife #AndroFeel #FitLife #AndroLife #AndroFeel #FitLife #AndroLife #AndroFeel #FitLife"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/meal_detail_facebook_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meal_description_label" />
@@ -91,12 +94,12 @@
     <com.facebook.share.widget.ShareButton
         android:id="@+id/meal_detail_facebook_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="29dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="#2196F3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meal_description_content" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/meal_detail_back_button"

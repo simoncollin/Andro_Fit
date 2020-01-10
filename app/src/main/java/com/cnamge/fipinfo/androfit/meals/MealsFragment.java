@@ -75,8 +75,6 @@ public class MealsFragment extends Fragment implements MealsAdapter.Listener {
         Intent intent = new Intent(this.getActivity(), MealsEditActivity.class);
         intent.putExtra(getString(R.string.session_intent_name), meal.getId());
         startActivity(intent);
-        showMessage(meal.toString());
-
     }
 
     private void onDeleteButtonClicked(int position){
@@ -116,6 +114,5 @@ public class MealsFragment extends Fragment implements MealsAdapter.Listener {
         Intent intent = new Intent(this.getActivity(), MealDetailActivity.class);
         intent.putExtra(getContext().getString(R.string.meal_intent_name), item.getId());
         startActivity(intent);
-        showMessage(item.toString());
     }
 }

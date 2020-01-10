@@ -1,11 +1,11 @@
 package com.cnamge.fipinfo.androfit.meals;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,22 +24,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.main.MainActivity;
+import com.cnamge.fipinfo.androfit.model.CalendarInteractor;
 import com.cnamge.fipinfo.androfit.model.Meal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
-import android.Manifest;
-import android.content.Context;
-
-import androidx.core.app.ActivityCompat;
-
-import com.cnamge.fipinfo.androfit.model.CalendarInteractor;
-
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class MealsEditActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
@@ -146,7 +137,7 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
 
     void onTimeClicked(){
         this.currentDatePicker = CurrentDatePicker.MEAL_TIME;
-        showDatePicker(context.getString(R.string.meal_time_label));
+        showTimePicker(context.getString(R.string.meal_time_label));
     }
 
     void saveCalendarEvent() {
@@ -155,13 +146,6 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
     void onRegisterButtonClicked() {
         this.currentMeal.save();
         registerModification();
-        Activity activity = this.getActivity();
-        if (activity.checkSelfPermission(Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED
-                && activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR}, 1);
-        } else {
-            this.saveCalendarEvent();
-        }
     }
 
     private void linkActivityToXml() {
@@ -245,6 +229,7 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
 
         this.dateMeal.setText(meal.getDateString());
         this.titleEditText.setText(meal.getName());
+        this.timeMeal.setText(meal.getTimeString());
     }
 
     void onDateEdited(int year, int monthOfYear, int dayOfMonth){

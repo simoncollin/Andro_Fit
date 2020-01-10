@@ -22,6 +22,7 @@ import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
+import com.orm.SugarRecord;
 
 
 public class MealDetailActivity extends AppCompatActivity {
@@ -69,6 +70,9 @@ public class MealDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Meal meal = SugarRecord.findById(Meal.class, detailledMeal.getId());
+        this.detailledMeal = meal;
+        setupView(detailledMeal);
     }
 
     private void linkActivityToXml(){
@@ -92,6 +96,7 @@ public class MealDetailActivity extends AppCompatActivity {
 
         if ( meal.getDescription() == null || meal.getDescription().isEmpty()) {
             this.mealDescriptionContent.setAlpha(0f);
+            findViewById(R.id.meal_description_label).setAlpha(0f);
         }else{
             this.mealDescriptionContent.setText(meal.getDescription());
         }

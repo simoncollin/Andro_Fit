@@ -1,7 +1,5 @@
 package com.cnamge.fipinfo.androfit.model;
 
-import androidx.annotation.NonNull;
-
 import com.orm.SugarRecord;
 
 import java.text.SimpleDateFormat;
@@ -88,7 +86,7 @@ public class Meal extends SugarRecord<Meal> {
 
 
     public String getTimeString(){
-        Date date = new Date(this.date);
+        Date date = new Date(this.time);
         SimpleDateFormat df2 = new SimpleDateFormat("HH:mm", Locale.FRANCE);
         return df2.format(date);
     }
