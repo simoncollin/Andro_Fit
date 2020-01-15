@@ -49,14 +49,14 @@ public class CalendarInteractor {
                 return;
             }
 
-            eventId = session.getCalendarEventId();
+        eventId = session.getCalendarEventId();
 
             Cursor cursor = this.activity.getContentResolver().query(
-                CalendarContract.Events.CONTENT_URI,
-                new String[]{CalendarContract.Events._ID},
-                CalendarContract.Events._ID + " = ? ",
-                new String[]{Long.toString(eventId)},
-                null
+                    CalendarContract.Events.CONTENT_URI,
+                    new String[]{CalendarContract.Events._ID},
+                    CalendarContract.Events._ID + " = ? ",
+                    new String[]{Long.toString(eventId)},
+                    null
             );
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
@@ -106,9 +106,10 @@ public class CalendarInteractor {
         return eventId;
     }
 
+
     private void updateEvent(Session session, long eventId) {
         if (this.activity.checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED
-            || eventId == -1) {
+                || eventId == -1) {
             return;
         }
 
@@ -120,10 +121,10 @@ public class CalendarInteractor {
         values.put(CalendarContract.Events.DESCRIPTION, session.getDescription());
 
         this.activity.getContentResolver().update(
-            CalendarContract.Events.CONTENT_URI,
-            values,
-            CalendarContract.Events._ID + " = ? ",
-            new String[]{Long.toString(eventId)}
+                CalendarContract.Events.CONTENT_URI,
+                values,
+                CalendarContract.Events._ID + " = ? ",
+                new String[]{Long.toString(eventId)}
         );
     }
 

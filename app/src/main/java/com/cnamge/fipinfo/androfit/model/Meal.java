@@ -9,15 +9,17 @@ import java.util.Locale;
 public class Meal extends SugarRecord<Meal> {
     private String name;
     private long date;
+    private long time;
     private String description;
     private String image_url;
     private User creator;
 
     public Meal() {}
 
-    public Meal(String name, long date, String description, String image_url) {
+    public Meal(String name, long date, long time, String description, String image_url) {
         this.name        = name;
         this.date        = date;
+        this.time        = time;
         this.description = description;
         this.image_url   = image_url;
     }
@@ -70,6 +72,11 @@ public class Meal extends SugarRecord<Meal> {
         this.creator = creator;
     }
 
+    public void setTime (long time){
+        this.time = time;
+    }
+
+
     @Override
     public String toString() {
         return "Meal{" +
@@ -86,5 +93,12 @@ public class Meal extends SugarRecord<Meal> {
         Date date = new Date(this.date);
         SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/YYYY", Locale.FRANCE);
         return df2.format(date); // Format 09/10/2019
+    }
+
+
+    public String getTimeString(){
+        Date date = new Date(this.time);
+        SimpleDateFormat df2 = new SimpleDateFormat("HH:mm", Locale.FRANCE);
+        return df2.format(date);
     }
 }

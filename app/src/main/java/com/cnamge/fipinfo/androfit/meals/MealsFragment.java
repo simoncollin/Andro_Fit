@@ -1,6 +1,7 @@
-package com.cnamge.fipinfo.androfit.fragments;
+package com.cnamge.fipinfo.androfit.meals;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +19,6 @@ import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.helpers.SwipeController;
 import com.cnamge.fipinfo.androfit.helpers.SwipeControllerActions;
 import com.cnamge.fipinfo.androfit.model.Meal;
-import com.orm.SugarApp;
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -72,18 +72,13 @@ public class MealsFragment extends Fragment implements MealsAdapter.Listener {
     }
 
     private void onEditButtonClicked(int position){
-        // TODO : Remove comment when MealEditActivity is ready
-
         Meal meal = this.meals.get(position);
-        /*Intent intent = new Intent(this.getActivity(), SessionEditActivity.class);
+        Intent intent = new Intent(this.getActivity(), MealsEditActivity.class);
         intent.putExtra(getString(R.string.session_intent_name), meal.getId());
-        startActivity(intent);*/
-        showMessage(meal.toString());
-
+        startActivity(intent);
     }
 
     private void onDeleteButtonClicked(int position){
-        // TODO Simon : delete meal photo from local directory
         Meal meal = this.meals.get(position);
         meal.delete();
         showMessage(meal.getName() + getString(R.string.meal_deleted));
@@ -117,10 +112,8 @@ public class MealsFragment extends Fragment implements MealsAdapter.Listener {
 
     @Override
     public void onItemClicked(Meal item) {
-        // TODO : Remove comment when MealDetailActivity is ready
-//        Intent intent = new Intent(this.getActivity(), MealDetailActivity.class);
-//        intent.putExtra(getContext().getString(R.string.meal_intent_name), item.getId());
-//        startActivity(intent);
-        showMessage(item.toString());
+        Intent intent = new Intent(this.getActivity(), MealDetailActivity.class);
+        intent.putExtra(getContext().getString(R.string.meal_intent_name), item.getId());
+        startActivity(intent);
     }
 }

@@ -25,7 +25,7 @@ class MainPresenter {
                 mainInterface.addSession();
                 break;
             case MEALS:
-                mainInterface.showMessage("Bottom Bar button clicked : MEALS");
+                mainInterface.addMeal();
                 break;
             case FRIENDS:
                 mainInterface.showMessage("Bottom Bar button clicked : FRIENDS");

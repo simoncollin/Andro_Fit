@@ -9,4 +9,6 @@ public interface MainInterface {
     void selectView(View view);
 
     void addSession();
+
+    void addMeal();
 }

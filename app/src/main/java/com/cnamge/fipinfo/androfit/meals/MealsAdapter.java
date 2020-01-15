@@ -1,4 +1,4 @@
-package com.cnamge.fipinfo.androfit.fragments;
+package com.cnamge.fipinfo.androfit.meals;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +16,6 @@ import com.cnamge.fipinfo.androfit.model.Meal;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHolder>  {
@@ -49,6 +48,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
 
         holder.sName.setText(item.getName());
         holder.sDate.setText(item.getDateString());
+        holder.sTime.setText(item.getTimeString());
         holder.loadImageFromStorage(item.getimage_url());
 
         holder.itemView.setOnClickListener(v -> listener.onItemClicked(item));
@@ -61,6 +61,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
 
     static class MealsViewHolder extends RecyclerView.ViewHolder {
 
+        TextView sTime;
         ImageView sImage;
         TextView sName;
         TextView sDate;
@@ -69,16 +70,16 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
             super(meal);
             this.sName = meal.findViewById(R.id.meal_name);
             this.sDate = meal.findViewById(R.id.meal_date);
+            this.sTime = meal.findViewById(R.id.meal_time);
             this.sImage = meal.findViewById(R.id.meal_image_ic);
         }
 
-
         private void loadImageFromStorage(String path){
             try {
-                File f=new File(path);
+                File f = new File(path);
                 Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
                 sImage.setImageBitmap(b);
-            } catch (FileNotFoundException e){
+            } catch (Exception e){
                 e.printStackTrace();
                 sImage.setImageResource(R.mipmap.ic_image);
             }
