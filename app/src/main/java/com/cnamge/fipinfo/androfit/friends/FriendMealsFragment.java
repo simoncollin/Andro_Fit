@@ -1,5 +1,6 @@
 package com.cnamge.fipinfo.androfit.friends;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cnamge.fipinfo.androfit.R;
-import com.cnamge.fipinfo.androfit.fragments.MealsAdapter;
+import com.cnamge.fipinfo.androfit.meals.MealDetailActivity;
+import com.cnamge.fipinfo.androfit.meals.MealsAdapter;
 import com.cnamge.fipinfo.androfit.model.Meal;
 import com.cnamge.fipinfo.androfit.model.User;
 import com.orm.SugarRecord;
@@ -65,10 +67,9 @@ public class FriendMealsFragment extends Fragment implements MealsAdapter.Listen
 
     @Override
     public void onItemClicked(Meal item) {
-        // TODO : Remove comment when MealDetailActivity is ready
-//        Intent intent = new Intent(this.getActivity(), MealDetailActivity.class);
-//        intent.putExtra(getContext().getString(R.string.meal_intent_name), item.getId());
-//        startActivity(intent);
+        Intent intent = new Intent(this.getActivity(), MealDetailActivity.class);
+        intent.putExtra(getContext().getString(R.string.meal_intent_name), item.getId());
+        startActivity(intent);
         showMessage(item.toString());
     }
 }

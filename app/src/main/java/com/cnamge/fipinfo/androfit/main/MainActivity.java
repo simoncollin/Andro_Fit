@@ -2,7 +2,6 @@ package com.cnamge.fipinfo.androfit.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,8 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.cnamge.fipinfo.androfit.R;
-import com.cnamge.fipinfo.androfit.fragments.MealsFragment;
-import com.cnamge.fipinfo.androfit.fragments.FriendsFragment;
 import com.cnamge.fipinfo.androfit.fragments.SettingsFragment;
 import com.cnamge.fipinfo.androfit.friends.FriendsFragment;
 import com.cnamge.fipinfo.androfit.model.FriendRequest;
@@ -28,7 +25,6 @@ import com.cnamge.fipinfo.androfit.model.Session;
 import com.cnamge.fipinfo.androfit.model.User;
 import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
 import com.cnamge.fipinfo.androfit.sessions.sessionsList.SessionsFragment;
-import com.cnamge.fipinfo.androfit.users.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orm.SugarRecord;
 

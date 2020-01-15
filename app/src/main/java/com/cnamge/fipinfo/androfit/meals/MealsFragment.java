@@ -1,5 +1,6 @@
 package com.cnamge.fipinfo.androfit.meals;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -92,7 +93,7 @@ public class MealsFragment extends Fragment implements MealsAdapter.Listener {
     }
 
     private List<Meal> getAllMeals() {
-        return SugarRecord.listAll(Meal.class);
+        return SugarRecord.find(Meal.class, "creator = ?", this.getActivity().getSharedPreferences(getString(R.string.preferences_file_label), Context.MODE_PRIVATE).getLong(getString(R.string.current_user_id), -1) + "");
     }
 
     @Override
