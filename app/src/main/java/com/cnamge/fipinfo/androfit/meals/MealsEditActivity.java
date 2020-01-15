@@ -1,10 +1,13 @@
 package com.cnamge.fipinfo.androfit.meals;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,7 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.main.MainActivity;
@@ -32,8 +37,9 @@ import java.util.Date;
 
 public class MealsEditActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
-    private static final int GALLERY_REQUEST_CODE = 1;
+    private static final int GALLERY_REQUEST_CODE = 2;
     private ImageView imageView;
+    private Intent pictureIntent;
 
     public enum CurrentDatePicker {
         MEAL_DATE,
@@ -150,6 +156,7 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
         Button cancelButton = findViewById(R.id.meal_cancel_button);
         Button saveButton = findViewById(R.id.meal_save_button);
 
+        this.imageView = findViewById(R.id.meal_image_ic);
         this.addMealPictureButton = findViewById(R.id.meal_add_picture_button);
         this.descriptionEditText = findViewById(R.id.meal_edit_add_description_Text);
         this.dateMeal = findViewById(R.id.meal_add_edit_date_content);
@@ -305,14 +312,46 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
 
     private void pickFromGallery(){
         //Create an Intent with action as ACTION_PICK
-        Intent PictureIntent=new Intent(Intent.ACTION_PICK);
+        this.pictureIntent = new Intent(Intent.ACTION_PICK);
         // Sets the type as image/*. This ensures only components of type image are selected
-        PictureIntent.setType("image/*");
+        this.pictureIntent.setType("image/*");
         //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
         String[] mimeTypes = {"image/jpeg", "image/png"};
-        PictureIntent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+        this.pictureIntent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
         // Launching the Intent
-        startActivityForResult(PictureIntent,GALLERY_REQUEST_CODE);
+        startActivityForResult(this.pictureIntent,GALLERY_REQUEST_CODE);
+    }
+
+    protected void setCurrentMealImage() {
+        Uri selectedImage = this.pictureIntent.getData();
+        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+        // Get the cursor
+        Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+        // Move to first row
+        cursor.moveToFirst();
+        //Get the column index of MediaStore.Images.Media.DATA
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        //Gets the String value in the column
+        String imgDecodableString = cursor.getString(columnIndex);
+        cursor.close();
+
+        this.currentMeal.setimage_url(imgDecodableString);
+        this.currentMeal.save();
+        this.imageView.setImageBitmap(BitmapFactory.decodeFile(this.currentMeal.getimage_url()));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length == 0 || grantResults[0] == PackageManager.PERMISSION_DENIED) {
+            if (requestCode == GALLERY_REQUEST_CODE) {
+                Toast.makeText(getApplicationContext(), "You must accept local storage read permissions", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            if (requestCode == GALLERY_REQUEST_CODE) {
+                startActivityForResult(this.pictureIntent, GALLERY_REQUEST_CODE);
+            }
+        }
     }
 
     @Override
@@ -321,28 +360,13 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
 
         // Result code is RESULT_OK only if the user selects an Image
         if (resultCode == Activity.RESULT_OK)
-            switch (requestCode){
-            case GALLERY_REQUEST_CODE:
-                //data.getData return the content URI for the selected Image
-                Uri selectedImage = data.getData();
-
-                String[] filePathColumn = { MediaStore.Images.Media.DATA };
-                // Get the cursor
-                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                // Move to first row
-                cursor.moveToFirst();
-                //Get the column index of MediaStore.Images.Media.DATA
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                //Gets the String value in the column
-                String imgDecodableString = cursor.getString(columnIndex);
-
-                cursor.close();
-
-                this.currentMeal.setimage_url(imgDecodableString);
-
-                // Set the Image in ImageView after decoding the String
-                //imageView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
-                break;
-         }
+            if (requestCode == GALLERY_REQUEST_CODE) {
+                this.pictureIntent = data;
+                if (this.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, GALLERY_REQUEST_CODE);
+                } else {
+                    this.setCurrentMealImage();
+                }
+            }
     }
 }
