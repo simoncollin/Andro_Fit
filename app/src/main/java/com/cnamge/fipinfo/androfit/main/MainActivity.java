@@ -25,11 +25,11 @@ import com.cnamge.fipinfo.androfit.model.Session;
 import com.cnamge.fipinfo.androfit.model.User;
 import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
 import com.cnamge.fipinfo.androfit.sessions.sessionsList.SessionsFragment;
+import com.cnamge.fipinfo.androfit.users.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orm.SugarRecord;
 
 import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity implements MainInterface {
 
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     private void setupBottomBar(){
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
     @Override
     public void selectView(View view){
+
         if (view != null) {
             this.sessionsButton.setAlpha(0.5f);
             this.mealsButton.setAlpha(0.5f);
@@ -163,18 +165,19 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     // TODO: Remove after devs
     protected void purgeAndReplaceFixtures() throws Exception{
         SugarRecord.deleteAll(Meal.class);
-        SugarRecord.deleteAll(User.class);
+        //SugarRecord.deleteAll(User.class);
         SugarRecord.deleteAll(FriendRequest.class);
-        SugarRecord.deleteAll(Session.class);
+        //SugarRecord.deleteAll(Session.class);
 
-        User currentUser = new User("Perlinpinpin");
-        currentUser.save();
-
-        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.preferences_file_label), Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.remove(getString(R.string.current_user_id));
-        editor.putLong(getString(R.string.current_user_id), currentUser.getId());
-        editor.commit();
+        //User currentUser = new User("Toto");
+        //currentUser.save();
+        long userId = this.getSharedPreferences(getString(R.string.preferences_file_label), Context.MODE_PRIVATE).getLong(getString(R.string.current_user_id), 0);
+        User currentUser = SugarRecord.findById(User.class, userId);
+//        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.preferences_file_label), Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.remove(getString(R.string.current_user_id));
+//        editor.putLong(getString(R.string.current_user_id), currentUser.getId());
+//        editor.commit();
 
 
         for (int i = 1; i <= 5; i++) {
