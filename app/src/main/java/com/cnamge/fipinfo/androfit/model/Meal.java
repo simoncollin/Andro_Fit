@@ -12,6 +12,7 @@ public class Meal extends SugarRecord<Meal> {
     private long time;
     private String description;
     private String image_url;
+    private User creator;
 
     public Meal() {}
 
@@ -23,11 +24,12 @@ public class Meal extends SugarRecord<Meal> {
         this.image_url   = image_url;
     }
 
-    public Meal(String s, long l, String desc, String s1) {
-        this.name = s;
-        this.date = l;
-        this.description = desc;
-        this.image_url = s1;
+    public Meal(String name, long date, String description, String image_url, User creator) {
+        this.name        = name;
+        this.date        = date;
+        this.description = description;
+        this.image_url   = image_url;
+        this.creator     = creator;
     }
 
     public String getName() {
@@ -62,6 +64,14 @@ public class Meal extends SugarRecord<Meal> {
         this.image_url = image_url;
     }
 
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
     public void setTime (long time){
         this.time = time;
     }
@@ -75,6 +85,7 @@ public class Meal extends SugarRecord<Meal> {
                 ", description='" + description + '\'' +
                 ", image_url='" + image_url + '\'' +
                 ", id=" + id +
+                ", creator username=" + creator.getUsername() +
                 '}';
     }
 

@@ -52,7 +52,9 @@ public class Session extends SugarRecord<Session> {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws Exception{
+        if (name.length() > 16)
+            throw new Exception("Session name mustn't exceed 16 characters");
         this.name = name;
     }
 

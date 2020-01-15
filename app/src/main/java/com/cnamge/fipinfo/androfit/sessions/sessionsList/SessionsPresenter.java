@@ -79,7 +79,7 @@ public class SessionsPresenter implements SessionsAdapter.Listener {
     }
 
     private List<Session> getAllSessions() {
-        return SugarRecord.listAll(Session.class);
+        return SugarRecord.find(Session.class, "creator = ?", context.getSharedPreferences(context.getString(R.string.preferences_file_label), Context.MODE_PRIVATE).getLong(context.getString(R.string.current_user_id), -1) + "");
     }
 
     void deleteCalendarEvent() {
