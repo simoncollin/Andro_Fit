@@ -79,7 +79,7 @@ public class SessionEditActivity extends AppCompatActivity implements SessionEdi
         this.cancelButton = findViewById(R.id.session_cancel_button);
         this.saveButton = findViewById(R.id.session_save_button);
 
-        this.cancelButton.setOnClickListener(v -> Log.println(Log.ERROR, "TEST", "Test"));
+        this.cancelButton.setOnClickListener(v -> presenter.onCancelButtonClicked());
         this.saveButton.setOnClickListener(v -> presenter.onRegisterButtonClicked());
 
         this.descriptionEditText = findViewById(R.id.session_description_editText);

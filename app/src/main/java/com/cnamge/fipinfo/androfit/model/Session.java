@@ -69,7 +69,7 @@ public class Session extends SugarRecord<Session> {
     }
 
     public void setBeginDate(long beginDate) throws Exception{
-        if (beginDate > endDate) {
+        if (endDate > 0 && beginDate > endDate) {
             throw new Exception("Begin date should not be greater than end date");
         }
         this.beginDate = beginDate;
@@ -80,7 +80,7 @@ public class Session extends SugarRecord<Session> {
     }
 
     public void setEndDate(long endDate) throws Exception{
-        if (beginDate > endDate) {
+        if (beginDate > 0 && beginDate > endDate) {
             throw new Exception("End date should be greater than begin date");
         }
         this.endDate = endDate;
