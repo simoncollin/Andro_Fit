@@ -19,11 +19,6 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".main.MainActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -33,6 +28,16 @@
         <activity
             android:name=".sessions.sessionEdit.SessionEditActivity"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".users.LoginActivity"
+            android:screenOrientation="portrait" >
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+        </activity>
 
         <meta-data android:name="DATABASE" android:value="andro_fit.db" />
         <meta-data android:name="VERSION" android:value="1" />

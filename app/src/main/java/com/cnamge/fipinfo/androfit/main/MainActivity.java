@@ -21,11 +21,11 @@ import com.cnamge.fipinfo.androfit.model.Meal;
 import com.cnamge.fipinfo.androfit.model.Session;
 import com.cnamge.fipinfo.androfit.sessions.sessionEdit.SessionEditActivity;
 import com.cnamge.fipinfo.androfit.sessions.sessionsList.SessionsFragment;
+import com.cnamge.fipinfo.androfit.users.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orm.SugarRecord;
 
 import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity implements MainInterface {
 
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     private void setupBottomBar(){
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
     @Override
     public void selectView(View view){
+
         if (view != null) {
             this.sessionsButton.setAlpha(0.5f);
             this.mealsButton.setAlpha(0.5f);
