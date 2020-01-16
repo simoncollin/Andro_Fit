@@ -24,6 +24,15 @@ public class Meal extends SugarRecord<Meal> {
         this.image_url   = image_url;
     }
 
+    public Meal(String name, long date, long time, String description, String image_url, User creator) {
+        this.name        = name;
+        this.date        = date;
+        this.time        = time;
+        this.description = description;
+        this.image_url   = image_url;
+        this.creator     = creator;
+    }
+
     public Meal(String name, long date, String description, String image_url, User creator) {
         this.name        = name;
         this.date        = date;
