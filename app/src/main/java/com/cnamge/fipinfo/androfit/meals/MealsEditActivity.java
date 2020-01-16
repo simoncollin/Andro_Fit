@@ -37,7 +37,7 @@ import java.util.Date;
 
 public class MealsEditActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
-    private static final int GALLERY_REQUEST_CODE = 2;
+    public static final int GALLERY_REQUEST_CODE = 2;
     private ImageView imageView;
     private Intent pictureIntent;
 
