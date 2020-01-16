@@ -74,7 +74,7 @@ public class MealsFragment extends Fragment implements MealsAdapter.Listener {
     private void onEditButtonClicked(int position){
         Meal meal = this.meals.get(position);
         Intent intent = new Intent(this.getActivity(), MealsEditActivity.class);
-        intent.putExtra(getString(R.string.session_intent_name), meal.getId());
+        intent.putExtra(getString(R.string.meal_intent_name), meal.getId());
         startActivity(intent);
     }
 
