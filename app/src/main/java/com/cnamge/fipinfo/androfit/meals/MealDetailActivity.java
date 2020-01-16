@@ -6,11 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -24,6 +19,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.model.Meal;
+import com.cnamge.fipinfo.androfit.model.User;
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
@@ -95,7 +91,6 @@ public class MealDetailActivity extends AppCompatActivity {
         this.backButton = findViewById(R.id.meal_detail_back_button);
         this.editButton = findViewById(R.id.meal_detail_edit_button);
 
-        this.editButton.setOnClickListener(v -> onEditButtonClicked());
         this.backButton.setOnClickListener(v -> onBackButtonClicked());
     }
 
@@ -109,6 +104,15 @@ public class MealDetailActivity extends AppCompatActivity {
             findViewById(R.id.meal_description_label).setAlpha(0f);
         }else{
             this.mealDescriptionContent.setText(meal.getDescription());
+        }
+
+        User sessionCreator = meal.getCreator();
+        User appOwner = SugarRecord.findById(User.class, getSharedPreferences(getString(R.string.preferences_file_label), Context.MODE_PRIVATE).getLong(getString(R.string.current_user_id), -1));
+
+        if (!(sessionCreator.getId().equals(appOwner.getId()))){
+            this.editButton.setAlpha(0F);
+        }else{
+            this.editButton.setOnClickListener(v -> onEditButtonClicked());
         }
     }
 

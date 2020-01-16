@@ -101,7 +101,7 @@ public class SessionDetailActivity extends AppCompatActivity implements SessionD
         User sessionCreator = session.getCreator();
         User appOwner = SugarRecord.findById(User.class, getSharedPreferences(getString(R.string.preferences_file_label), Context.MODE_PRIVATE).getLong(getString(R.string.current_user_id), -1));
 
-        if (!sessionCreator.equals(appOwner)){
+        if (!(sessionCreator.getId().equals(appOwner.getId()))){
             this.editButton.setAlpha(0F);
         }else{
             this.editButton.setOnClickListener(v -> presenter.onEditButtonClicked());
