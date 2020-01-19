@@ -26,9 +26,10 @@ import androidx.core.app.ActivityCompat;
 
 import com.cnamge.fipinfo.androfit.R;
 import com.cnamge.fipinfo.androfit.main.MainActivity;
-import com.cnamge.fipinfo.androfit.model.CalendarInteractor;
 import com.cnamge.fipinfo.androfit.model.Meal;
+import com.cnamge.fipinfo.androfit.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.orm.SugarRecord;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
@@ -62,7 +63,6 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
     private CurrentDatePicker currentDatePicker = null;
 
 
-    private CalendarInteractor calendarInteractor;
     private int currentYear = 0;
     private int currentMonth = 0;
     private int currentDay = 0;
@@ -87,13 +87,13 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
 
                 this.context = this.getApplicationContext();
                 this.currentMeal = new Meal();
-                this.calendarInteractor = new CalendarInteractor(this.getActivity());
+                User currentUser = SugarRecord.findById(User.class, getSharedPreferences(getString(R.string.preferences_file_label), Context.MODE_PRIVATE).getLong(getString(R.string.current_user_id), -1));
+                this.currentMeal.setCreator(currentUser);
             }else{
                 appbarRightTextView.setText(R.string.title_meal_edit);
                 long mealId = (long) getIntent().getExtras().get(getString(R.string.meal_intent_name));
                 this.context = this.getApplicationContext();
                 this.currentMeal = Meal.findById(Meal.class, mealId);
-                this.calendarInteractor = new CalendarInteractor(this.getActivity());
                 this.setupViewForEdition(currentMeal);
             }
         }
