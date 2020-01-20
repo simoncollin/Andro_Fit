@@ -97,6 +97,11 @@ public class MealsEditActivity extends AppCompatActivity implements TimePickerDi
                 this.setupViewForEdition(currentMeal);
             }
         }
+
+        if (this.currentMeal.getimage_url() != null) {
+            this.imageView.setImageBitmap(BitmapFactory.decodeFile(this.currentMeal.getimage_url()));
+        }
+
         this.setEditionListener();
     }
 

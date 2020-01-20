@@ -63,7 +63,11 @@ public class MealDetailActivity extends AppCompatActivity {
         this.detailledMeal = Meal.findById(Meal.class, mealId);
         this.context = getApplicationContext();
         this.setupView(detailledMeal);
-        this.imageView.setImageBitmap(BitmapFactory.decodeFile(this.detailledMeal.getimage_url()));
+
+        if (this.detailledMeal.getimage_url() != null) {
+            this.imageView.setImageBitmap(BitmapFactory.decodeFile(this.detailledMeal.getimage_url()));
+        }
+
         this.setFacebookButtonShareContent();
     }
 
